@@ -41,7 +41,7 @@ npx skills@latest add mattpocock/skills
 
 ## Why These Skills Exist
 
-I built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.
+I built these skills as a way to fix common failure modes I see with Kiro, Codex, and other coding agents.
 
 ### #1: The Agent Didn't Do What I Want
 
@@ -170,7 +170,7 @@ General workflow tools, not code-specific.
 
 Tools I keep around but rarely use.
 
-- **[git-guardrails-claude-code](./skills/misc/git-guardrails-claude-code/SKILL.md)** — Set up Claude Code hooks to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
+- **[git-guardrails](./skills/misc/git-guardrails/SKILL.md)** — Set up a Kiro hook to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
 - **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
 - **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Create exercise directory structures with sections, problems, solutions, and explainers.
 - **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.

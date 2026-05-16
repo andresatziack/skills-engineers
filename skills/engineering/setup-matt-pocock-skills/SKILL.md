@@ -1,6 +1,6 @@
 ---
 name: setup-matt-pocock-skills
-description: Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
+description: Sets up Kiro steering files under `.kiro/steering/` (an `agent-skills-config.md` index plus `issue-tracker.md`, `triage-labels.md`, and `domain.md`) so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
 disable-model-invocation: true
 ---
 
@@ -21,10 +21,10 @@ This is a prompt-driven skill, not a deterministic script. Explore, present what
 Look at the current repo to understand its starting state. Read whatever exists; don't assume:
 
 - `git remote -v` and `.git/config` — is this a GitHub repo? Which one?
-- `AGENTS.md` and `CLAUDE.md` at the repo root — does either exist? Is there already an `## Agent skills` section in either?
+- Look for existing steering files under `.kiro/steering/` — specifically `agent-skills-config.md`, or any file containing an `## Agent skills` block. Also note whether `.kiro/` itself exists.
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
 - `docs/adr/` and any `src/*/docs/adr/` directories
-- `docs/agents/` — does this skill's prior output already exist?
+- Look at `.kiro/steering/` for any prior output of this skill (e.g. `issue-tracker.md`, `triage-labels.md`, `domain.md`).
 - `.scratch/` — sign that a local-markdown issue tracker convention is already in use
 
 ### 2. Present findings and ask
@@ -71,51 +71,52 @@ Confirm the layout:
 
 Show the user a draft of:
 
-- The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
-- The contents of `docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, `docs/agents/domain.md`
+- The `agent-skills-config.md` steering file (which Kiro will load on every interaction).
+- The contents of `.kiro/steering/issue-tracker.md`, `.kiro/steering/triage-labels.md`, `.kiro/steering/domain.md`.
 
 Let them edit before writing.
 
 ### 4. Write
 
-**Pick the file to edit:**
+Write four files into `.kiro/steering/` (creating the directory if missing):
 
-- If `CLAUDE.md` exists, edit it.
-- Else if `AGENTS.md` exists, edit it.
-- If neither exists, ask the user which one to create — don't pick for them.
+- `agent-skills-config.md` — the index file with `inclusion: always` front-matter, holding the three one-line summaries shown below.
+- `issue-tracker.md` — from the matching seed template (see below).
+- `triage-labels.md` — from [triage-labels.md](./triage-labels.md).
+- `domain.md` — from [domain.md](./domain.md).
 
-Never create `AGENTS.md` when `CLAUDE.md` already exists (or vice versa) — always edit the one that's already there.
-
-If an `## Agent skills` block already exists in the chosen file, update its contents in-place rather than appending a duplicate. Don't overwrite user edits to the surrounding sections.
+If `.kiro/steering/agent-skills-config.md` already exists, update it in place (replacing the `## Agent skills` block) rather than overwriting the surrounding content. Don't overwrite user edits to other sections of that file.
 
 The block:
 
 ```markdown
+---
+inclusion: always
+---
+
 ## Agent skills
 
 ### Issue tracker
 
-[one-line summary of where issues are tracked]. See `docs/agents/issue-tracker.md`.
+[one-line summary of where issues are tracked]. See `.kiro/steering/issue-tracker.md`.
 
 ### Triage labels
 
-[one-line summary of the label vocabulary]. See `docs/agents/triage-labels.md`.
+[one-line summary of the label vocabulary]. See `.kiro/steering/triage-labels.md`.
 
 ### Domain docs
 
-[one-line summary of layout — "single-context" or "multi-context"]. See `docs/agents/domain.md`.
+[one-line summary of layout — "single-context" or "multi-context"]. See `.kiro/steering/domain.md`.
 ```
 
-Then write the three docs files using the seed templates in this skill folder as a starting point:
+Pick the matching seed template for the issue tracker:
 
 - [issue-tracker-github.md](./issue-tracker-github.md) — GitHub issue tracker
 - [issue-tracker-gitlab.md](./issue-tracker-gitlab.md) — GitLab issue tracker
 - [issue-tracker-local.md](./issue-tracker-local.md) — local-markdown issue tracker
-- [triage-labels.md](./triage-labels.md) — label mapping
-- [domain.md](./domain.md) — domain doc consumer rules + layout
 
-For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
+Write its contents to `.kiro/steering/issue-tracker.md`. For "other" issue trackers, write `.kiro/steering/issue-tracker.md` from scratch using the user's description.
 
 ### 5. Done
 
-Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later — re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
+Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `.kiro/steering/issue-tracker.md`, `.kiro/steering/triage-labels.md`, or `.kiro/steering/domain.md` directly later — re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
