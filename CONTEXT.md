@@ -1,26 +1,26 @@
 # Matt Pocock Skills
 
-A collection of agent skills (Kiro steering files and behaviors) loaded by Kiro. Skills are organized into buckets and consumed by per-repo configuration emitted by `/setup-matt-pocock-skills`.
+Uma coleção de skills de agente (Kiro steering files e comportamentos) carregadas pelo Kiro. As skills são organizadas em buckets e consumidas pela configuração por repositório emitida por `/setup-matt-pocock-skills`.
 
-## Language
+## Linguagem
 
 **Issue tracker**:
-The tool that hosts a repo's issues — GitHub Issues, Linear, a local `.scratch/` markdown convention, or similar. Skills like `to-issues`, `to-prd`, `triage`, and `qa` read from and write to it.
-_Avoid_: backlog manager, backlog backend, issue host
+A ferramenta que hospeda as issues de um repositório — GitHub Issues, Linear, uma convenção markdown local em `.scratch/`, ou similar. Skills como `to-issues`, `to-prd`, `triage` e `qa` leem dele e escrevem nele.
+_Evite_: backlog manager, backlog backend, issue host
 
 **Issue**:
-A single tracked unit of work inside an **Issue tracker** — a bug, task, PRD, or slice produced by `to-issues`.
-_Avoid_: ticket (use only when quoting external systems that call them tickets)
+Uma única unidade rastreada de trabalho dentro de um **Issue tracker** — um bug, tarefa, PRD ou fatia produzida por `to-issues`.
+_Evite_: ticket (use somente ao citar sistemas externos que os chamam de tickets)
 
 **Triage role**:
-A canonical state-machine label applied to an **Issue** during triage (e.g. `needs-triage`, `ready-for-afk`). Each role maps to a real label string in the **Issue tracker** via `docs/agents/triage-labels.md`.
+Um rótulo canônico de máquina de estados aplicado a uma **Issue** durante a triagem (por exemplo, `needs-triage`, `ready-for-afk`). Cada role mapeia para uma string de label real no **Issue tracker** via `docs/agents/triage-labels.md`.
 
-## Relationships
+## Relações
 
-- An **Issue tracker** holds many **Issues**
-- An **Issue** carries one **Triage role** at a time
+- Um **Issue tracker** contém muitas **Issues**
+- Uma **Issue** carrega uma **Triage role** por vez
 
-## Flagged ambiguities
+## Ambiguidades sinalizadas
 
-- "backlog" was previously used to mean both the *tool* hosting issues and the *body of work* inside it — resolved: the tool is the **Issue tracker**; "backlog" is no longer used as a domain term.
-- "backlog backend" / "backlog manager" — resolved: collapsed into **Issue tracker**.
+- "backlog" era usado anteriormente para significar tanto a *ferramenta* que hospeda as issues quanto o *corpo de trabalho* dentro dela — resolvido: a ferramenta é o **Issue tracker**; "backlog" não é mais usado como termo de domínio.
+- "backlog backend" / "backlog manager" — resolvido: colapsados em **Issue tracker**.

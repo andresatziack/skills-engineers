@@ -1,25 +1,25 @@
-# Issue tracker integrations are limited to mainstream tools
+# Integrações com issue trackers limitadas a ferramentas mainstream
 
-`setup-matt-pocock-skills` only offers first-class support for **mainstream** issue trackers. Requests to add support for niche, new, or single-vendor experimental trackers are out of scope.
+`setup-matt-pocock-skills` só oferece suporte de primeira classe a issue trackers **mainstream**. Pedidos para adicionar suporte a trackers de nicho, novos ou experimentais de um único fornecedor estão fora do escopo.
 
-## Why this is out of scope
+## Por que isso está fora do escopo
 
-Every issue-tracker backend hard-codes a CLI shape into the skills (commands, flags, output parsing). Each new backend is permanent maintenance surface — it has to keep working as the tool's CLI evolves, and it has to keep being tested against `/to-prd`, `/to-issues`, `/triage`, and friends. That cost is only worth paying for trackers a meaningful fraction of users actually have.
+Cada backend de issue tracker fixa um formato de CLI dentro das skills (comandos, flags, parsing de saída). Cada novo backend é superfície permanente de manutenção — precisa continuar funcionando à medida que a CLI da ferramenta evolui, e precisa continuar sendo testado contra `/to-prd`, `/to-issues`, `/triage` e companhia. Esse custo só compensa para trackers que uma fração significativa dos usuários realmente tem.
 
-"Mainstream" is a judgment call, not a numeric bar:
+"Mainstream" é uma decisão de bom senso, não uma régua numérica:
 
-- GitHub, GitLab, and Backlog.md are the kind of tools we'd consider mainstream — broadly known, widely used, well past the experimental phase.
-- A brand-new agent-focused tool with a few hundred GitHub stars is not, no matter how interesting the design.
+- GitHub, GitLab e Backlog.md são o tipo de ferramenta que consideraríamos mainstream — amplamente conhecidas, muito usadas e bem além da fase experimental.
+- Uma ferramenta novinha focada em agentes com algumas centenas de stars no GitHub não é, por mais interessante que seja o design.
 
-Stars, age, and download counts are useful signals when making the call but none of them is the rule. The rule is: would a typical engineer recognise this tool and have plausibly chosen it for their team?
+Stars, idade e contagens de download são sinais úteis ao tomar a decisão, mas nenhum deles é a regra. A regra é: um engenheiro típico reconheceria essa ferramenta e plausivelmente a teria escolhido para o time dele?
 
-The escape hatches for non-mainstream trackers already exist:
+As válvulas de escape para trackers não-mainstream já existem:
 
-- `local markdown` for lightweight in-repo tracking.
-- `other/custom` for users who want to wire something up themselves.
+- `local markdown` para rastreamento leve dentro do repositório.
+- `other/custom` para usuários que querem cabear algo por conta própria.
 
-Neither requires the core skills to know about the specific tool.
+Nenhuma das duas exige que as skills principais conheçam a ferramenta específica.
 
-## Prior requests
+## Pedidos anteriores
 
-- #99 — "Add dex as an issue tracker backend" (dex was ~3 months old and ~300 stars at the time of the request)
+- #99 — "Add dex as an issue tracker backend" (dex tinha cerca de 3 meses e ~300 stars na época do pedido)
