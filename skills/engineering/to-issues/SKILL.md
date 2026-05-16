@@ -74,7 +74,7 @@ Evite paths específicos de arquivo ou snippets de código — eles ficam desatu
 
 ## Blocked by
 
-- Uma referência ao ticket bloqueador (se houver)
+- Uma referência à issue bloqueadora (se houver)
 
 Ou "None - can start immediately" se nenhum bloqueador.
 

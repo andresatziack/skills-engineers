@@ -18,6 +18,17 @@ Chaves opcionais:
 
 - `disable-model-invocation: true` — defina nas skills do tipo setup que só devem ser invocadas explicitamente pelo usuário, nunca disparadas automaticamente pelo agente com base na descrição.
 
+## Modos de inclusão
+
+Quando um arquivo é colocado em `.kiro/steering/`, o front-matter aceita uma chave `inclusion:` que diz ao Kiro quando carregar o arquivo. Os quatro modos são:
+
+- `always` — carregado em toda interação. É o default quando `inclusion:` está ausente. Use só para steering files curtos e sempre relevantes (convenções globais, glossários).
+- `fileMatch` + `fileMatchPattern: "<glob>"` — carregado quando algum arquivo aberto no workspace casa o glob. Use para regras escopadas por área da codebase (por exemplo, este arquivo: `fileMatchPattern: "skills/**/SKILL.md"`).
+- `manual` — não é carregado automaticamente; fica disponível por referência `#<slug>` em chat ou como comando `/<slug>`. Use para skills que o usuário invoca explicitamente.
+- `auto` + `name:` + `description:` — Kiro decide carregar com base no match da descrição com o prompt do usuário; também fica disponível como `/<name>`. Requer as chaves `name:` e `description:` no mesmo bloco YAML.
+
+Sem `inclusion:`, o arquivo cai no default `always` e é injetado em toda interação — o que costuma ser o oposto do desejado para um `SKILL.md` que era originalmente um comando slash.
+
 ## Layout de arquivos
 
 - O ponto de entrada principal da skill é o `SKILL.md` na raiz da pasta da skill.

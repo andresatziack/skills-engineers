@@ -22,6 +22,6 @@ Infira o repo a partir de `git remote -v` — `glab` faz isso automaticamente qu
 
 Crie uma issue no GitLab.
 
-## Quando uma skill diz "buscar o ticket relevante"
+## Quando uma skill diz "buscar a issue relevante"
 
 Rode `glab issue view <number> --comments`.
