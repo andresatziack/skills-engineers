@@ -1,6 +1,6 @@
-# Personal
+# Pessoal
 
-Skills tied to my own setup, not promoted in the plugin.
+Skills atreladas à minha própria configuração, não promovidas no plugin.
 
-- **[edit-article](./edit-article/SKILL.md)** — Edit and improve articles by restructuring sections, improving clarity, and tightening prose.
-- **[obsidian-vault](./obsidian-vault/SKILL.md)** — Search, create, and manage notes in an Obsidian vault with wikilinks and index notes.
+- **[edit-article](./edit-article/SKILL.md)** — Edita e melhora artigos reestruturando seções, melhorando a clareza e apertando a prosa.
+- **[obsidian-vault](./obsidian-vault/SKILL.md)** — Busca, cria e gerencia notas em um vault do Obsidian com wikilinks e index notes.

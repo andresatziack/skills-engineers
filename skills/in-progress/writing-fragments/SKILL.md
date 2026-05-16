@@ -1,41 +1,41 @@
 ---
 name: writing-fragments
-description: Grilling session that mines the user for fragments — heterogeneous nuggets of writing (claims, vignettes, sharp sentences, half-thoughts) — and appends them to a single document as raw material for a future article. Use when the user wants to develop ideas before imposing structure, or mentions "fragments", "ideate", or "raw material" for writing.
+description: Sessão de grilling que minera o usuário em busca de fragmentos — pepitas heterogêneas de escrita (afirmações, vinhetas, frases afiadas, meios-pensamentos) — e os anexa a um único documento como matéria-prima para um futuro artigo. Use quando o usuário quiser desenvolver ideias antes de impor estrutura, ou mencionar "fragmentos", "ideação" ou "matéria-prima" para escrita.
 ---
 
 <what-to-do>
 
-Run a grilling session that produces fragments. Interview the user relentlessly about whatever they want to write about. Do not impose phases, outlines, or structure — that is explicitly out of scope.
+Rode uma sessão de grilling que produza fragmentos. Entreviste o usuário implacavelmente sobre o que quer que ele queira escrever. Não imponha fases, outlines ou estrutura — isso está explicitamente fora do escopo.
 
-As fragments emerge from either side of the conversation, append them to a single markdown file. The user will be editing this file during the session; always re-read it before writing so their edits are preserved.
+Conforme fragmentos emergem dos dois lados da conversa, anexe-os a um único arquivo markdown. O usuário vai estar editando esse arquivo durante a sessão; sempre releia antes de escrever para que as edições dele sejam preservadas.
 
-If the user did not pass a path, ask once where to save the document, then remember it for the rest of the session.
+Se o usuário não passou um caminho, pergunte uma vez onde salvar o documento e depois lembre dele pelo resto da sessão.
 
-Capture fragments from the very first thing the user says, including the initial prompt.
+Capture fragmentos da primeiríssima coisa que o usuário diz, incluindo o prompt inicial.
 
-On first write, put a single H1 at the top with a working title (it can change later) and nothing else — no metadata, no TOC, no date.
+Na primeira escrita, coloque um único H1 no topo com um título de trabalho (ele pode mudar depois) e nada mais — sem metadata, sem TOC, sem data.
 
 </what-to-do>
 
 <supporting-info>
 
-## What is a fragment
+## O que é um fragmento
 
-A fragment is any piece of text that might survive into the final article. It must be _readable by the author_ — the author can tell what it means — but it does not need to define its terms or be comprehensible to a cold reader. The bar is "is this a piece of good writing?", not "is this a self-contained argument?"
+Um fragmento é qualquer pedaço de texto que pode sobreviver até o artigo final. Ele precisa ser _legível pelo autor_ — o autor consegue dizer o que significa — mas não precisa definir seus termos nem ser compreensível para um leitor frio. A barra é "isto é um pedaço de boa escrita?", não "isto é um argumento autocontido?"
 
-Fragments are deliberately heterogeneous. Examples of what could be a fragment:
+Fragmentos são deliberadamente heterogêneos. Exemplos do que pode ser um fragmento:
 
-- A sharp sentence you'd want to deploy somewhere but don't yet know where.
-- A claim with a one-line justification.
-- A vignette: a thing that happened, a code snippet, a scenario, an analogy.
-- A half-thought: "something about how X feels like Y, work this out later."
-- A quote, a piece of dialogue, an overheard line.
-- A list of related observations that hang together by feel.
-- A complaint, a confession, a punchline.
+- Uma frase afiada que você gostaria de usar em algum lugar mas ainda não sabe onde.
+- Uma afirmação com uma justificativa de uma linha.
+- Uma vinheta: algo que aconteceu, um trecho de código, um cenário, uma analogia.
+- Um meio-pensamento: "algo sobre como X parece com Y, depois eu trabalho isso melhor."
+- Uma citação, um pedaço de diálogo, uma frase ouvida por acaso.
+- Uma lista de observações relacionadas que se sustentam por afinidade.
+- Uma reclamação, uma confissão, uma piada.
 
-The novelist's diary is the model: years of unstructured noticings that later get mined for raw material. Fragments are noticings.
+O diário do romancista é o modelo: anos de notas não estruturadas que mais tarde são mineradas para virar matéria-prima. Fragmentos são notas.
 
-## File format
+## Formato do arquivo
 
 ```markdown
 # Working title
@@ -62,14 +62,14 @@ A reaction to it.
 - And want to be near each other
 ```
 
-Fragments are separated by a horizontal rule (`\n---\n`). No headings inside the body. No tags. No order beyond the order they were added.
+Fragmentos são separados por uma régua horizontal (`\n---\n`). Sem headings dentro do corpo. Sem tags. Sem ordem além da ordem em que foram adicionados.
 
-## Writing rhythm
+## Ritmo de escrita
 
-Append silently. Don't ask permission for each fragment. Mention what you added in passing ("adding that"), but don't interrupt the conversation with save dialogs.
+Anexe em silêncio. Não peça permissão para cada fragmento. Mencione o que você adicionou de passagem ("adicionando isso"), mas não interrompa a conversa com diálogos de salvar.
 
-Before every write: re-read the file from disk. The user may have edited, reordered, or deleted fragments between turns — preserve their changes. Never overwrite the file; only append (or, if the user asks, edit a specific fragment in place).
+Antes de cada escrita: releia o arquivo do disco. O usuário pode ter editado, reordenado ou deletado fragmentos entre turnos — preserve as mudanças dele. Nunca sobrescreva o arquivo; só anexe (ou, se o usuário pedir, edite um fragmento específico no lugar).
 
-The user can say "cut the last one", "rewrite that one sharper", "merge those two" at any time. Treat those as first-class instructions.
+O usuário pode dizer "cut the last one", "rewrite that one sharper", "merge those two" a qualquer momento. Trate isso como instruções de primeira classe.
 
 </supporting-info>
