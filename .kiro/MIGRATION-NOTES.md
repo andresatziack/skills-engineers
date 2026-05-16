@@ -9,7 +9,7 @@ Este repositório foi originalmente construído como um plugin para outra IDE de
 - `.kiro/steering/skill-authoring-rules.md` — regras de autoria para qualquer `SKILL.md` (`inclusion: fileMatch` em `skills/**/SKILL.md`).
 - `.kiro/steering/published-skills.md` — inventário canônico das skills publicadas (`inclusion: manual`).
 - `.kiro/hooks/git-guardrails.kiro.hook` — hook de exemplo que bloqueia comandos git destrutivos (`when.type: preToolUse`, `then.type: runCommand`).
-- `.kiro/hooks/scripts/block-dangerous-git.sh` — script bash invocado pelo hook acima.
+- `.kiro/hooks/scripts/block-dangerous-git.sh` — symlink para `skills/misc/git-guardrails/scripts/block-dangerous-git.sh` (a cópia empacotada na skill é canônica; o hook a invoca via path relativo a partir da raiz do workspace).
 - `.kiro/settings/mcp.json` — configuração MCP do workspace (`{"mcpServers": {}}` por padrão).
 
 ## Arquivos modificados
