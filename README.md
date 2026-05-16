@@ -34,14 +34,14 @@ npx skills@latest add mattpocock/skills
 
 3. Rode `/setup-matt-pocock-skills` no seu agente. Ele vai:
    - Perguntar qual issue tracker você quer usar (GitHub, Linear ou arquivos locais)
-   - Perguntar quais labels você aplica aos tickets quando faz triagem (`/triage` usa labels)
+   - Perguntar quais labels você aplica às issues quando faz triagem (`/triage` usa labels)
    - Perguntar onde você quer salvar quaisquer docs que criarmos
 
 4. Pronto — você está com tudo certo para começar.
 
 ## Por Que Estas Skills Existem
 
-Eu construí estas skills como uma forma de corrigir modos comuns de falha que vejo com Kiro, Codex e outros agentes de código.
+Eu construí estas skills como uma forma de corrigir modos comuns de falha que vejo em Codex, Kiro e outros agentes de código modernos.
 
 ### #1: O Agente Não Fez o Que Eu Queria
 

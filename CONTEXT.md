@@ -1,6 +1,6 @@
 # Matt Pocock Skills
 
-Uma coleção de skills de agente (Kiro steering files e comportamentos) carregadas pelo Kiro. As skills são organizadas em buckets e consumidas pela configuração por repositório emitida por `/setup-matt-pocock-skills`.
+Uma coleção de skills de agente (cada uma um `SKILL.md` portátil) consumidas pelo Kiro via referência manual em chat ou via cópia para `.kiro/steering/`. As skills são organizadas em buckets e consumidas pela configuração por repositório emitida por `/setup-matt-pocock-skills`.
 
 ## Linguagem
 
