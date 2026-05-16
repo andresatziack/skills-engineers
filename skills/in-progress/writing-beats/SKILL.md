@@ -1,52 +1,52 @@
 ---
 name: writing-beats
-description: Shape an article as a journey of beats, choose-your-own-adventure style. The user picks a starting beat from the raw material, you write only that beat, then offer options for where to pivot next, beat by beat, until the article reaches a natural end. Use when the user has raw material and wants to assemble it as a narrative rather than an argument.
+description: Modela um artigo como uma jornada de beats, no estilo escolha-sua-aventura. O usuário escolhe um beat inicial a partir da matéria-prima, você escreve apenas aquele beat, depois oferece opções de para onde pivotar a seguir, beat por beat, até o artigo chegar a um fim natural. Use quando o usuário tem matéria-prima e quer montá-la como uma narrativa em vez de um argumento.
 ---
 
 <what-to-do>
 
-The user has passed (or will pass) a markdown file of raw material.
+O usuário passou (ou vai passar) um arquivo markdown de matéria-prima.
 
-If the user did not say where to save the article, ask once and remember the path.
+Se o usuário não disse onde salvar o artigo, pergunte uma vez e lembre o caminho.
 
-Then run a beat-by-beat journey:
+Depois rode uma jornada beat-a-beat:
 
-1. Write 2–3 candidate **starting beats**, drawn from the raw material. Each is a different entry point into the article. Show the user the beats before writing it to the article file. The user picks one. Preview what beats that might lead to once written - as if the user is seeing a little way down the path.
-2. Once the user picks a starting beat, write **only that beat** to the article file. A beat may be one sentence or several paragraphs — whatever that beat naturally is. Stop there.
-3. Re-read the article file from disk. Then offer 2–3 candidate **next beats** — different directions the journey could pivot to from where the article now stands.
-4. Loop steps 2–4 until the article reaches a natural end.
+1. Escreva 2-3 candidatos a **beat inicial**, tirados da matéria-prima. Cada um é um ponto de entrada diferente no artigo. Mostre os beats ao usuário antes de escrevê-los no arquivo do artigo. O usuário escolhe um. Pré-visualize a quais beats ele poderia levar uma vez escrito — como se o usuário estivesse vendo um pouco mais à frente no caminho.
+2. Quando o usuário escolher um beat inicial, escreva **apenas aquele beat** no arquivo do artigo. Um beat pode ser uma frase ou vários parágrafos — o que aquele beat naturalmente for. Pare ali.
+3. Releia o arquivo do artigo do disco. Depois ofereça 2-3 candidatos a **próximo beat** — direções diferentes para onde a jornada poderia pivotar a partir de onde o artigo agora está.
+4. Repita os passos 2-4 até o artigo chegar a um fim natural.
 
 </what-to-do>
 
 <supporting-info>
 
-## What is a beat
+## O que é um beat
 
-A beat is one move in the journey. It does one thing — sets a scene, lands a point, asks a question, drops an aside, twists the angle. Then it stops, leaving the reader at a place where the next beat can pivot.
+Um beat é um movimento na jornada. Ele faz uma coisa — monta uma cena, aterrissa um ponto, faz uma pergunta, solta um aparte, gira o ângulo. Depois para, deixando o leitor num lugar de onde o próximo beat possa pivotar.
 
-A beat is sized by what it needs:
+Um beat tem o tamanho do que ele precisa:
 
-- A single sentence if that's all the move is ("And then nothing happened for three weeks.").
-- A short paragraph if the move needs setup.
-- Multiple paragraphs if the beat is a self-contained vignette, argument, or example.
+- Uma única frase se for tudo o que o movimento é ("And then nothing happened for three weeks.").
+- Um parágrafo curto se o movimento precisa de uma preparação.
+- Vários parágrafos se o beat é uma vinheta, argumento ou exemplo autocontido.
 
-If a "beat" needs five paragraphs and three subheadings, it's not a beat — it's two beats glued together. Split it.
+Se um "beat" precisa de cinco parágrafos e três subheadings, ele não é um beat — são dois beats colados. Separe-os.
 
-## Writing one beat
+## Escrevendo um beat
 
-Once a beat is picked, write _that beat only_ to the article file. Do not write the next beat.
+Uma vez que um beat tenha sido escolhido, escreva _apenas aquele beat_ no arquivo do artigo. Não escreva o próximo beat.
 
-Pull material from the raw pile to populate the beat. You can paraphrase, split, recombine, or quote. The pile is a quarry.
+Puxe material da pilha de matéria-prima para popular o beat. Você pode parafrasear, dividir, recombinar ou citar. A pilha é uma pedreira.
 
-## Ending the journey
+## Encerrando a jornada
 
-The article ends when the journey is complete — not when the pile is empty. Most piles will have leftover fragments that don't make it in. That is fine; that is the point of having more raw material than you need.
+O artigo termina quando a jornada está completa — não quando a pilha está vazia. A maioria das pilhas vai ter fragmentos sobrando que não entram. Tudo bem; é justamente esse o ponto de ter mais matéria-prima do que você precisa.
 
-## Writing rhythm
+## Ritmo de escrita
 
-- Append one beat at a time. Never write ahead.
-- Re-read the article file from disk before every write. Preserve user edits absolutely.
-- If the user edits a previous beat substantially, let it change what comes next.
-- If the user says "rewrite that beat" or "go back and try a different beat 3", do it — edit in place, leave the rest alone.
+- Anexe um beat por vez. Nunca escreva à frente.
+- Releia o arquivo do artigo do disco antes de cada escrita. Preserve as edições do usuário absolutamente.
+- Se o usuário editar substancialmente um beat anterior, deixe isso mudar o que vem depois.
+- Se o usuário disser "rewrite that beat" ou "go back and try a different beat 3", faça — edite no lugar, deixe o resto em paz.
 
 </supporting-info>

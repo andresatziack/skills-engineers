@@ -1,25 +1,25 @@
 ---
 name: request-refactor-plan
-description: Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue. Use when user wants to plan a refactor, create a refactoring RFC, or break a refactor into safe incremental steps.
+description: Cria um plano de refactor detalhado com commits minúsculos via entrevista com o usuário, depois o registra como uma issue no GitHub. Use quando o usuário quiser planejar um refactor, criar uma RFC de refactor ou quebrar um refactor em passos incrementais seguros.
 ---
 
-This skill will be invoked when the user wants to create a refactor request. You should go through the steps below. You may skip steps if you don't consider them necessary.
+Esta skill será invocada quando o usuário quiser criar um pedido de refactor. Você deve seguir os passos abaixo. Pode pular passos se considerar que não são necessários.
 
-1. Ask the user for a long, detailed description of the problem they want to solve and any potential ideas for solutions.
+1. Peça ao usuário uma descrição longa e detalhada do problema que ele quer resolver e quaisquer ideias potenciais de soluções.
 
-2. Explore the repo to verify their assertions and understand the current state of the codebase.
+2. Explore o repo para verificar as afirmações dele e entender o estado atual da codebase.
 
-3. Ask whether they have considered other options, and present other options to them.
+3. Pergunte se ele considerou outras opções e apresente outras opções a ele.
 
-4. Interview the user about the implementation. Be extremely detailed and thorough.
+4. Entreviste o usuário sobre a implementação. Seja extremamente detalhado e minucioso.
 
-5. Hammer out the exact scope of the implementation. Work out what you plan to change and what you plan not to change.
+5. Cinzele o escopo exato da implementação. Defina o que você planeja mudar e o que planeja não mudar.
 
-6. Look in the codebase to check for test coverage of this area of the codebase. If there is insufficient test coverage, ask the user what their plans for testing are.
+6. Olhe na codebase para checar a cobertura de testes desta área da codebase. Se a cobertura de testes for insuficiente, pergunte ao usuário quais são os planos dele para testes.
 
-7. Break the implementation into a plan of tiny commits. Remember Martin Fowler's advice to "make each refactoring step as small as possible, so that you can always see the program working."
+7. Quebre a implementação em um plano de commits minúsculos. Lembre do conselho do Martin Fowler: "make each refactoring step as small as possible, so that you can always see the program working."
 
-8. Create a GitHub issue with the refactor plan. Use the following template for the issue description:
+8. Crie uma issue no GitHub com o plano de refactor. Use o template a seguir para a descrição da issue:
 
 <refactor-plan-template>
 

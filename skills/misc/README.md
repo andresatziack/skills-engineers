@@ -1,8 +1,8 @@
-# Misc
+# Diversos
 
-Tools I keep around but rarely use.
+Ferramentas que mantenho por perto, mas que uso raramente.
 
-- **[git-guardrails](./git-guardrails/SKILL.md)** — Set up a Kiro hook to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
-- **[migrate-to-shoehorn](./migrate-to-shoehorn/SKILL.md)** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
-- **[scaffold-exercises](./scaffold-exercises/SKILL.md)** — Create exercise directory structures with sections, problems, solutions, and explainers.
-- **[setup-pre-commit](./setup-pre-commit/SKILL.md)** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
+- **[git-guardrails](./git-guardrails/SKILL.md)** — Configura um hook do Kiro para bloquear comandos git perigosos (push, reset --hard, clean, etc.) antes que eles executem.
+- **[migrate-to-shoehorn](./migrate-to-shoehorn/SKILL.md)** — Migra arquivos de teste de assertions de tipo `as` para @total-typescript/shoehorn.
+- **[scaffold-exercises](./scaffold-exercises/SKILL.md)** — Cria estruturas de diretórios de exercícios com seções, problemas, soluções e explainers.
+- **[setup-pre-commit](./setup-pre-commit/SKILL.md)** — Configura hooks de pre-commit do Husky com lint-staged, Prettier, type checking e testes.

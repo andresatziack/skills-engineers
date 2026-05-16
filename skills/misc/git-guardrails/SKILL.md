@@ -1,46 +1,46 @@
 ---
 name: git-guardrails
-description: Set up a Kiro hook to block dangerous git commands (push, reset --hard, clean -f, branch -D, etc.) before they execute. Use when the user wants to prevent destructive git operations or add git safety hooks.
+description: Configura um hook do Kiro para bloquear comandos git perigosos (push, reset --hard, clean -f, branch -D, etc.) antes que eles executem. Use quando o usuário quiser prevenir operações git destrutivas ou adicionar hooks de segurança para git.
 ---
 
 # Setup Git Guardrails
 
-Sets up a Kiro `preToolUse` hook that intercepts and blocks dangerous git commands before the agent executes them.
+Configura um hook `preToolUse` do Kiro que intercepta e bloqueia comandos git perigosos antes que o agente os execute.
 
-## What Gets Blocked
+## O Que É Bloqueado
 
-- `git push` (all variants including `--force`)
+- `git push` (todas as variantes incluindo `--force`)
 - `git reset --hard`
 - `git clean -f` / `git clean -fd`
 - `git branch -D`
 - `git checkout .` / `git restore .`
 
-When blocked, the agent sees a stderr message telling it that it does not have authority to access these commands, and the shell tool call exits with status 2.
+Quando bloqueado, o agente vê uma mensagem de stderr informando que ele não tem autoridade para acessar esses comandos, e a chamada da ferramenta de shell encerra com status 2.
 
-## Steps
+## Passos
 
-### 1. Ask scope
+### 1. Pergunte sobre o escopo
 
-Ask the user: install for **this project only** (workspace `.kiro/hooks/`) or **all projects** (global `~/.kiro/hooks/`)?
+Pergunte ao usuário: instalar **só para este projeto** (workspace `.kiro/hooks/`) ou **para todos os projetos** (global `~/.kiro/hooks/`)?
 
-### 2. Copy the hook script
+### 2. Copie o script do hook
 
-The bundled script is at: [scripts/block-dangerous-git.sh](scripts/block-dangerous-git.sh)
+O script empacotado está em: [scripts/block-dangerous-git.sh](scripts/block-dangerous-git.sh)
 
-Copy it to the target location based on scope:
+Copie-o para o local de destino conforme o escopo:
 
-- **Project**: `.kiro/hooks/scripts/block-dangerous-git.sh`
+- **Projeto**: `.kiro/hooks/scripts/block-dangerous-git.sh`
 - **Global**: `~/.kiro/hooks/scripts/block-dangerous-git.sh`
 
-Make it executable with `chmod +x`.
+Torne-o executável com `chmod +x`.
 
-### 3. Add the hook file
+### 3. Adicione o arquivo do hook
 
-Kiro hooks live as individual JSON files with a `.kiro.hook` extension under `.kiro/hooks/` (workspace) or `~/.kiro/hooks/` (global). Create one file per hook.
+Hooks do Kiro vivem como arquivos JSON individuais com extensão `.kiro.hook` em `.kiro/hooks/` (workspace) ou `~/.kiro/hooks/` (global). Crie um arquivo por hook.
 
-A working example is shipped with this repo at [`.kiro/hooks/git-guardrails.kiro.hook`](../../../.kiro/hooks/git-guardrails.kiro.hook). Copy it to the target location and adjust the script path if you installed globally.
+Um exemplo funcional já vem com este repo em [`.kiro/hooks/git-guardrails.kiro.hook`](../../../.kiro/hooks/git-guardrails.kiro.hook). Copie-o para o local de destino e ajuste o caminho do script se você tiver instalado globalmente.
 
-**Project** (`.kiro/hooks/git-guardrails.kiro.hook`):
+**Projeto** (`.kiro/hooks/git-guardrails.kiro.hook`):
 
 ```json
 {
@@ -60,21 +60,21 @@ A working example is shipped with this repo at [`.kiro/hooks/git-guardrails.kiro
 }
 ```
 
-**Global** (`~/.kiro/hooks/git-guardrails.kiro.hook`): same JSON, but change `then.command` to `bash ~/.kiro/hooks/scripts/block-dangerous-git.sh`.
+**Global** (`~/.kiro/hooks/git-guardrails.kiro.hook`): mesmo JSON, mas mude `then.command` para `bash ~/.kiro/hooks/scripts/block-dangerous-git.sh`.
 
-Each hook file is independent — drop it next to any other `.kiro.hook` files. Don't merge hooks into a single file.
+Cada arquivo de hook é independente — coloque-o ao lado de qualquer outro arquivo `.kiro.hook`. Não junte hooks num único arquivo.
 
-### 4. Ask about customization
+### 4. Pergunte sobre customização
 
-Ask if the user wants to add or remove any patterns from the blocked list. Edit the `DANGEROUS_PATTERNS` array directly in the copied `block-dangerous-git.sh`.
+Pergunte se o usuário quer adicionar ou remover algum padrão da lista de bloqueados. Edite o array `DANGEROUS_PATTERNS` diretamente no `block-dangerous-git.sh` que foi copiado.
 
-### 5. Verify
+### 5. Verifique
 
-Run a quick test:
+Rode um teste rápido:
 
 ```bash
 bash .kiro/hooks/scripts/block-dangerous-git.sh <<< '{"tool_input":{"command":"git push origin main"}}'
 echo $?
 ```
 
-Should print a BLOCKED message to stderr and exit with code 2.
+Deve imprimir uma mensagem BLOCKED no stderr e encerrar com código 2.

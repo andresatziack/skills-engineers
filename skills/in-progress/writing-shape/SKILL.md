@@ -1,33 +1,33 @@
 ---
 name: writing-shape
-description: Take a markdown file of raw material and shape it into an article through a conversational session — drafting candidate openings, growing the piece paragraph by paragraph, arguing about format (lists, tables, callouts, quotes) at each step. Use when the user has a pile of notes, fragments, or a rough draft and wants help turning it into something publishable.
+description: Pega um arquivo markdown de matéria-prima e o molda em um artigo por meio de uma sessão conversacional — esboçando aberturas candidatas, crescendo o texto parágrafo por parágrafo, argumentando sobre formato (listas, tabelas, callouts, citações) a cada passo. Use quando o usuário tem uma pilha de notas, fragmentos ou um rascunho cru e quer ajuda para transformá-lo em algo publicável.
 ---
 
 <what-to-do>
 
-The user has passed (or will pass) a markdown file of raw material. Treat it as the input pile — anything from a tidy list of fragments to a wall of unstructured prose to a transcript. The format does not matter. Read it end-to-end before doing anything else.
+O usuário passou (ou vai passar) um arquivo markdown de matéria-prima. Trate-o como a pilha de entrada — qualquer coisa, de uma lista organizada de fragmentos a uma parede de prosa não estruturada a uma transcrição. O formato não importa. Leia-o de ponta a ponta antes de fazer qualquer outra coisa.
 
-Then run a shaping session that produces a separate article document. Do not edit the raw material file — it is read-only to this skill.
+Depois rode uma sessão de moldagem que produza um documento de artigo separado. Não edite o arquivo de matéria-prima — ele é somente leitura para esta skill.
 
-If the user did not say where to save the article, ask once and remember the path. The user will be editing the article file during the session; always re-read it before writing so their edits are preserved.
+Se o usuário não disse onde salvar o artigo, pergunte uma vez e lembre o caminho. O usuário vai estar editando o arquivo do artigo durante a sessão; sempre releia antes de escrever para que as edições dele sejam preservadas.
 
 </what-to-do>
 
 <supporting-info>
 
-## The loop
+## O loop
 
-1. **Read the pile.** Read the input file in full. Form a sense of what's in it.
-2. **Draft 2–3 candidate openings.** Each opening should imply a different thesis or angle for the article. Show all of them. Force the user to pick or compose a hybrid. The chosen opening defines what the rest of the article must do.
-3. **Grow paragraph by paragraph.** After the opening lands, ask "given this opening, what does the reader need to hear next?" Pull material from the pile to answer. Argue about whether the next beat is a paragraph, a list, a table, a callout, a quote, a code block. Each format choice should be deliberate and defensible.
-4. **Append to the article file as you go.** Don't batch. Write each agreed paragraph or block immediately so the user can see the article taking shape.
-5. **Loop step 3 until the article is done.** The user decides when it's done.
+1. **Leia a pilha.** Leia o arquivo de entrada por inteiro. Forme uma noção do que está nele.
+2. **Esboce 2-3 aberturas candidatas.** Cada abertura deve implicar uma tese ou ângulo diferente para o artigo. Mostre todas. Force o usuário a escolher ou compor um híbrido. A abertura escolhida define o que o resto do artigo precisa fazer.
+3. **Cresça parágrafo por parágrafo.** Depois que a abertura aterrissar, pergunte "dado este início, o que o leitor precisa ouvir a seguir?" Puxe material da pilha para responder. Argumente sobre se o próximo beat é um parágrafo, uma lista, uma tabela, um callout, uma citação, um bloco de código. Cada escolha de formato deve ser deliberada e defensável.
+4. **Anexe ao arquivo do artigo conforme você for.** Não faça em batch. Escreva cada parágrafo ou bloco acordado imediatamente para que o usuário possa ver o artigo tomando forma.
+5. **Repita o passo 3 até o artigo estar pronto.** O usuário decide quando está pronto.
 
-## Conversational feel
+## Sensação conversacional
 
-This is a grilling session inverted. In ideation, the question was "what are you actually noticing?" Here it's "what is this article actually arguing, and in what order does the reader need to hear it?" Push back. Refuse to let weak transitions slide. If a paragraph doesn't earn its place, cut it.
+Esta é uma sessão de grilling invertida. Na ideação, a pergunta era "o que você está realmente notando?" Aqui é "o que este artigo está realmente argumentando, e em que ordem o leitor precisa ouvir?" Empurre de volta. Recuse-se a deixar transições fracas passarem. Se um parágrafo não merece seu lugar, corte-o.
 
-Specific moves to keep using:
+Movimentos específicos para continuar usando:
 
 - "What does this paragraph do for the reader that the previous one didn't?"
 - "If I cut this, what breaks?"
@@ -35,30 +35,30 @@ Specific moves to keep using:
 - "This sentence is doing two jobs — split it or pick one."
 - "The opening promised X. We've drifted to Y. Either re-thread it or change the opening."
 
-## Pulling from the pile
+## Puxando da pilha
 
-Treat the raw material as a quarry, not a script. Pull a fragment, rework it to fit the surrounding paragraph, and place it. A fragment may be split across multiple paragraphs, merged with another, or paraphrased. The pile's job is to be mined; the article's job is to read as one voice.
+Trate a matéria-prima como uma pedreira, não como um roteiro. Puxe um fragmento, retrabalhe-o para se encaixar no parágrafo ao redor e o coloque. Um fragmento pode ser dividido entre vários parágrafos, fundido com outro ou parafraseado. O trabalho da pilha é ser minerada; o trabalho do artigo é ler como uma única voz.
 
-If the pile lacks something the article needs, name the gap explicitly: "We need an example here and the pile doesn't have one — give me one now or we cut this section."
+Se a pilha não tiver algo que o artigo precisa, nomeie a lacuna explicitamente: "We need an example here and the pile doesn't have one — give me one now or we cut this section."
 
-## Format arguments to actually have
+## Argumentos de formato para realmente ter
 
-When choosing how to render a beat, weigh these tradeoffs out loud with the user, not silently:
+Ao escolher como renderizar um beat, pondere essas trade-offs em voz alta com o usuário, não em silêncio:
 
-- **Prose vs. list.** Prose carries argument; lists carry parallel items. If items aren't truly parallel, prose is better. If they are, a list is faster to scan.
-- **Inline vs. callout.** Tips, warnings, and asides go in callouts (`> [!TIP]`, `> [!NOTE]`) — but only if they'd genuinely derail the main argument inline. Otherwise leave them inline.
-- **Table vs. repeated structure.** If the same shape repeats 3+ times with the same fields, a table. Otherwise prose with bold leads.
-- **Quote vs. paraphrase.** Quote when the original wording is the point. Paraphrase when only the idea matters.
-- **Code block vs. inline code.** Multi-line, runnable, or illustrative → block. Single token or identifier → inline.
+- **Prosa vs. lista.** Prosa carrega argumento; listas carregam itens paralelos. Se os itens não são realmente paralelos, prosa é melhor. Se são, uma lista é mais rápida de escanear.
+- **Inline vs. callout.** Tips, warnings e apartes vão em callouts (`> [!TIP]`, `> [!NOTE]`) — mas só se eles fossem genuinamente descarrilhar o argumento principal inline. Caso contrário, deixe inline.
+- **Tabela vs. estrutura repetida.** Se a mesma forma se repete 3+ vezes com os mesmos campos, uma tabela. Caso contrário, prosa com leads em negrito.
+- **Citação vs. paráfrase.** Cite quando a redação original é o ponto. Parafraseie quando só a ideia importa.
+- **Bloco de código vs. código inline.** Multilinha, executável ou ilustrativo → bloco. Token único ou identificador → inline.
 
-## Writing rhythm
+## Ritmo de escrita
 
-Append to the article file as each block is agreed. Re-read the file from disk before every write — the user may have edited between turns. Never overwrite blindly. If the user wants a paragraph rewritten, edit that specific paragraph in place; leave the rest alone.
+Anexe ao arquivo do artigo conforme cada bloco for acordado. Releia o arquivo do disco antes de cada escrita — o usuário pode ter editado entre turnos. Nunca sobrescreva às cegas. Se o usuário quiser um parágrafo reescrito, edite aquele parágrafo específico no lugar; deixe o resto em paz.
 
-## Out of scope
+## Fora de escopo
 
-- Mining for new fragments that aren't in the pile (the pile is the input — if it's incomplete, name the gap and either get the user to fill it or cut the section).
-- Editing the raw material file.
-- Publishing, formatting for a specific platform, or adding frontmatter the user didn't ask for.
+- Minerar novos fragmentos que não estão na pilha (a pilha é o input — se estiver incompleta, nomeie a lacuna e ou faça o usuário preencher ou corte a seção).
+- Editar o arquivo de matéria-prima.
+- Publicar, formatar para uma plataforma específica ou adicionar frontmatter que o usuário não pediu.
 
 </supporting-info>

@@ -1,27 +1,27 @@
 ---
 name: ubiquitous-language
-description: Extract a DDD-style ubiquitous language glossary from the current conversation, flagging ambiguities and proposing canonical terms. Saves to UBIQUITOUS_LANGUAGE.md. Use when user wants to define domain terms, build a glossary, harden terminology, create a ubiquitous language, or mentions "domain model" or "DDD".
+description: Extrai um glossário de linguagem ubíqua estilo DDD a partir da conversa atual, sinalizando ambiguidades e propondo termos canônicos. Salva em UBIQUITOUS_LANGUAGE.md. Use quando o usuário quiser definir termos de domínio, montar um glossário, endurecer terminologia, criar uma linguagem ubíqua ou mencionar "modelo de domínio" ou "DDD".
 disable-model-invocation: true
 ---
 
 # Ubiquitous Language
 
-Extract and formalize domain terminology from the current conversation into a consistent glossary, saved to a local file.
+Extraia e formalize a terminologia de domínio da conversa atual num glossário consistente, salvo num arquivo local.
 
-## Process
+## Processo
 
-1. **Scan the conversation** for domain-relevant nouns, verbs, and concepts
-2. **Identify problems**:
-   - Same word used for different concepts (ambiguity)
-   - Different words used for the same concept (synonyms)
-   - Vague or overloaded terms
-3. **Propose a canonical glossary** with opinionated term choices
-4. **Write to `UBIQUITOUS_LANGUAGE.md`** in the working directory using the format below
-5. **Output a summary** inline in the conversation
+1. **Escaneie a conversa** em busca de substantivos, verbos e conceitos relevantes ao domínio
+2. **Identifique problemas**:
+   - Mesma palavra usada para conceitos diferentes (ambiguidade)
+   - Palavras diferentes usadas para o mesmo conceito (sinônimos)
+   - Termos vagos ou sobrecarregados
+3. **Proponha um glossário canônico** com escolhas opinativas de termos
+4. **Escreva em `UBIQUITOUS_LANGUAGE.md`** no diretório de trabalho usando o formato abaixo
+5. **Imprima um resumo** inline na conversa
 
-## Output Format
+## Formato de Saída
 
-Write a `UBIQUITOUS_LANGUAGE.md` file with this structure:
+Escreva um arquivo `UBIQUITOUS_LANGUAGE.md` com esta estrutura:
 
 ```md
 # Ubiquitous Language
@@ -57,16 +57,16 @@ Write a `UBIQUITOUS_LANGUAGE.md` file with this structure:
 - "account" was used to mean both **Customer** and **User** — these are distinct concepts: a **Customer** places orders, while a **User** is an authentication identity that may or may not represent a **Customer**.
 ```
 
-## Rules
+## Regras
 
-- **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
-- **Flag conflicts explicitly.** If a term is used ambiguously in the conversation, call it out in the "Flagged ambiguities" section with a clear recommendation.
-- **Only include terms relevant for domain experts.** Skip the names of modules or classes unless they have meaning in the domain language.
-- **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
-- **Show relationships.** Use bold term names and express cardinality where obvious.
-- **Only include domain terms.** Skip generic programming concepts (array, function, endpoint) unless they have domain-specific meaning.
-- **Group terms into multiple tables** when natural clusters emerge (e.g. by subdomain, lifecycle, or actor). Each group gets its own heading and table. If all terms belong to a single cohesive domain, one table is fine — don't force groupings.
-- **Write an example dialogue.** A short conversation (3-5 exchanges) between a dev and a domain expert that demonstrates how the terms interact naturally. The dialogue should clarify boundaries between related concepts and show terms being used precisely.
+- **Seja opinativo.** Quando existem várias palavras para o mesmo conceito, escolha a melhor e liste as outras como aliases a evitar.
+- **Sinalize conflitos explicitamente.** Se um termo for usado de forma ambígua na conversa, chame atenção para ele na seção "Flagged ambiguities" com uma recomendação clara.
+- **Inclua apenas termos relevantes para domain experts.** Pule nomes de módulos ou classes a menos que tenham significado na linguagem de domínio.
+- **Mantenha definições apertadas.** No máximo uma frase. Defina o que ELE É, não o que faz.
+- **Mostre relações.** Use nomes de termo em negrito e expresse cardinalidade onde óbvio.
+- **Inclua apenas termos de domínio.** Pule conceitos genéricos de programação (array, função, endpoint) a menos que tenham significado específico de domínio.
+- **Agrupe termos em múltiplas tabelas** quando clusters naturais emergirem (ex.: por subdomínio, ciclo de vida ou ator). Cada grupo recebe seu próprio heading e tabela. Se todos os termos pertencem a um único domínio coeso, uma tabela está ok — não force agrupamentos.
+- **Escreva um diálogo de exemplo.** Uma conversa curta (3-5 trocas) entre uma pessoa dev e um domain expert que demonstre como os termos interagem naturalmente. O diálogo deve esclarecer fronteiras entre conceitos relacionados e mostrar termos sendo usados com precisão.
 
 <example>
 
@@ -82,12 +82,12 @@ Write a `UBIQUITOUS_LANGUAGE.md` file with this structure:
 
 </example>
 
-## Re-running
+## Re-execução
 
-When invoked again in the same conversation:
+Quando invocada de novo na mesma conversa:
 
-1. Read the existing `UBIQUITOUS_LANGUAGE.md`
-2. Incorporate any new terms from subsequent discussion
-3. Update definitions if understanding has evolved
-4. Re-flag any new ambiguities
-5. Rewrite the example dialogue to incorporate new terms
+1. Leia o `UBIQUITOUS_LANGUAGE.md` existente
+2. Incorpore quaisquer novos termos de discussão posterior
+3. Atualize definições se a compreensão tiver evoluído
+4. Re-sinalize quaisquer novas ambiguidades
+5. Reescreva o diálogo de exemplo para incorporar novos termos

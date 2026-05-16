@@ -1,29 +1,29 @@
 ---
 name: design-an-interface
-description: Generate multiple radically different interface designs for a module using parallel sub-agents. Use when user wants to design an API, explore interface options, compare module shapes, or mentions "design it twice".
+description: Gera múltiplos designs de interface radicalmente diferentes para um módulo usando sub-agentes paralelos. Use quando o usuário quiser desenhar uma API, explorar opções de interface, comparar formas de módulo ou mencionar "design it twice".
 ---
 
 # Design an Interface
 
-Based on "Design It Twice" from "A Philosophy of Software Design": your first idea is unlikely to be the best. Generate multiple radically different designs, then compare.
+Baseado em "Design It Twice" de "A Philosophy of Software Design": é improvável que sua primeira ideia seja a melhor. Gere múltiplos designs radicalmente diferentes e depois compare.
 
-## Workflow
+## Fluxo de trabalho
 
-### 1. Gather Requirements
+### 1. Levante Requisitos
 
-Before designing, understand:
+Antes de desenhar, entenda:
 
-- [ ] What problem does this module solve?
-- [ ] Who are the callers? (other modules, external users, tests)
-- [ ] What are the key operations?
-- [ ] Any constraints? (performance, compatibility, existing patterns)
-- [ ] What should be hidden inside vs exposed?
+- [ ] Que problema este módulo resolve?
+- [ ] Quem são os chamadores? (outros módulos, usuários externos, testes)
+- [ ] Quais são as operações-chave?
+- [ ] Alguma restrição? (performance, compatibilidade, padrões existentes)
+- [ ] O que deve ficar escondido por dentro vs exposto?
 
-Ask: "What does this module need to do? Who will use it?"
+Pergunte: "What does this module need to do? Who will use it?"
 
-### 2. Generate Designs (Parallel Sub-Agents)
+### 2. Gere Designs (Sub-Agentes Paralelos)
 
-Spawn 3+ sub-agents simultaneously using Task tool. Each must produce a **radically different** approach.
+Dispare 3+ sub-agentes simultaneamente usando a ferramenta Task. Cada um precisa produzir uma abordagem **radicalmente diferente**.
 
 ```
 Prompt template for each sub-agent:
@@ -45,50 +45,50 @@ Output format:
 4. Trade-offs of this approach
 ```
 
-### 3. Present Designs
+### 3. Apresente os Designs
 
-Show each design with:
+Mostre cada design com:
 
-1. **Interface signature** - types, methods, params
-2. **Usage examples** - how callers actually use it in practice
-3. **What it hides** - complexity kept internal
+1. **Assinatura da interface** - tipos, métodos, params
+2. **Exemplos de uso** - como os chamadores realmente a usam na prática
+3. **O que ela esconde** - complexidade mantida interna
 
-Present designs sequentially so user can absorb each approach before comparison.
+Apresente os designs sequencialmente para que o usuário possa absorver cada abordagem antes da comparação.
 
-### 4. Compare Designs
+### 4. Compare os Designs
 
-After showing all designs, compare them on:
+Depois de mostrar todos os designs, compare-os em:
 
-- **Interface simplicity**: fewer methods, simpler params
-- **General-purpose vs specialized**: flexibility vs focus
-- **Implementation efficiency**: does shape allow efficient internals?
-- **Depth**: small interface hiding significant complexity (good) vs large interface with thin implementation (bad)
-- **Ease of correct use** vs **ease of misuse**
+- **Simplicidade da interface**: menos métodos, params mais simples
+- **Propósito geral vs especializada**: flexibilidade vs foco
+- **Eficiência da implementação**: a forma permite internas eficientes?
+- **Profundidade**: interface pequena escondendo complexidade significativa (bom) vs interface grande com implementação fina (ruim)
+- **Facilidade de uso correto** vs **facilidade de uso indevido**
 
-Discuss trade-offs in prose, not tables. Highlight where designs diverge most.
+Discuta as trade-offs em prosa, não em tabelas. Destaque onde os designs divergem mais.
 
-### 5. Synthesize
+### 5. Sintetize
 
-Often the best design combines insights from multiple options. Ask:
+Frequentemente o melhor design combina insights de múltiplas opções. Pergunte:
 
 - "Which design best fits your primary use case?"
 - "Any elements from other designs worth incorporating?"
 
-## Evaluation Criteria
+## Critérios de Avaliação
 
-From "A Philosophy of Software Design":
+De "A Philosophy of Software Design":
 
-**Interface simplicity**: Fewer methods, simpler params = easier to learn and use correctly.
+**Interface simplicity**: Menos métodos, params mais simples = mais fácil de aprender e usar corretamente.
 
-**General-purpose**: Can handle future use cases without changes. But beware over-generalization.
+**General-purpose**: Pode lidar com casos de uso futuros sem mudanças. Mas cuidado com supergeneralização.
 
-**Implementation efficiency**: Does interface shape allow efficient implementation? Or force awkward internals?
+**Implementation efficiency**: A forma da interface permite implementação eficiente? Ou força internas estranhas?
 
-**Depth**: Small interface hiding significant complexity = deep module (good). Large interface with thin implementation = shallow module (avoid).
+**Depth**: Interface pequena escondendo complexidade significativa = módulo profundo (bom). Interface grande com implementação fina = módulo raso (evitar).
 
-## Anti-Patterns
+## Antipadrões
 
-- Don't let sub-agents produce similar designs - enforce radical difference
-- Don't skip comparison - the value is in contrast
-- Don't implement - this is purely about interface shape
-- Don't evaluate based on implementation effort
+- Não deixe os sub-agentes produzirem designs parecidos - imponha diferença radical
+- Não pule a comparação - o valor está no contraste
+- Não implemente - isto é puramente sobre a forma da interface
+- Não avalie com base no esforço de implementação

@@ -1,14 +1,14 @@
 ---
 name: edit-article
-description: Edit and improve articles by restructuring sections, improving clarity, and tightening prose. Use when user wants to edit, revise, or improve an article draft.
+description: Edita e melhora artigos reestruturando seções, melhorando a clareza e apertando a prosa. Use quando o usuário quiser editar, revisar ou melhorar um rascunho de artigo.
 ---
 
-1. First, divide the article into sections based on its headings. Think about the main points you want to make during those sections.
+1. Primeiro, divida o artigo em seções com base nos seus headings. Pense nos pontos principais que você quer fazer durante essas seções.
 
-Consider that information is a directed acyclic graph, and that pieces of information can depend on other pieces of information. Make sure that the order of the sections and their contents respects these dependencies.
+Considere que informação é um grafo acíclico dirigido, e que pedaços de informação podem depender de outros pedaços de informação. Garanta que a ordem das seções e o seu conteúdo respeitem essas dependências.
 
-Confirm the sections with the user.
+Confirme as seções com o usuário.
 
-2. For each section:
+2. Para cada seção:
 
-2a. Rewrite the section to improve clarity, coherence, and flow. Use maximum 240 characters per paragraph.
+2a. Reescreva a seção para melhorar a clareza, a coerência e a fluidez. Use no máximo 240 caracteres por parágrafo.
