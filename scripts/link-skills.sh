@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Links all skills in the repository to ~/.claude/skills, so that
-# they can be used by the local Claude CLI.
+# Symlink every non-deprecated skill folder into a flat directory the user can
+# browse or import into a .kiro/steering/ workspace. Pass the destination as
+# the first argument; defaults to $HOME/.local/share/skills-engineers/.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-DEST="$HOME/.claude/skills"
+DEST="${1:-$HOME/.local/share/skills-engineers}"
 
-# If ~/.claude/skills is a symlink that resolves into this repo, we'd end up
-# writing the per-skill symlinks back into the repo's own skills/ tree. Detect
-# and bail out instead of polluting the working copy.
+# If $DEST is a symlink that resolves into this repo, we'd end up writing the
+# per-skill symlinks back into the repo's own skills/ tree. Detect and bail
+# out instead of polluting the working copy.
 if [ -L "$DEST" ]; then
   resolved="$(readlink -f "$DEST")"
   case "$resolved" in
@@ -36,3 +37,9 @@ while IFS= read -r -d '' skill_md; do
   ln -sfn "$src" "$target"
   echo "linked $name -> $src"
 done
+
+echo
+echo "Done. Each linked folder under $DEST contains a SKILL.md."
+echo "To consume one in a Kiro workspace, copy or symlink its SKILL.md into"
+echo "<workspace>/.kiro/steering/ (consider 'inclusion: manual' so it is invoked by name,"
+echo "then reference it from chat as #<skill-slug>)."
