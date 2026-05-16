@@ -21,6 +21,6 @@ Infira o repo a partir de `git remote -v` — `gh` faz isso automaticamente quan
 
 Crie uma issue no GitHub.
 
-## Quando uma skill diz "buscar o ticket relevante"
+## Quando uma skill diz "buscar a issue relevante"
 
 Rode `gh issue view <number> --comments`.
