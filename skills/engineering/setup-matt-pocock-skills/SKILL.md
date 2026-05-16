@@ -81,9 +81,9 @@ Deixe-os editar antes de escrever.
 Escreva quatro arquivos em `.kiro/steering/` (criando o diretório se ausente):
 
 - `agent-skills-config.md` — o arquivo de índice com front-matter `inclusion: always`, contendo os três resumos de uma linha mostrados abaixo.
-- `issue-tracker.md` — a partir do template seed correspondente (veja abaixo).
-- `triage-labels.md` — a partir de [triage-labels.md](./triage-labels.md).
-- `domain.md` — a partir de [domain.md](./domain.md).
+- `issue-tracker.md` — a partir do template seed correspondente (veja abaixo). O template já vem com `inclusion: manual` no topo; preserve esse front-matter ao copiar.
+- `triage-labels.md` — a partir de [triage-labels.md](./triage-labels.md). O template já vem com `inclusion: manual`.
+- `domain.md` — a partir de [domain.md](./domain.md). O template já vem com `inclusion: manual`.
 
 Se `.kiro/steering/agent-skills-config.md` já existe, atualize-o no lugar (substituindo o bloco `## Agent skills`) em vez de sobrescrever o conteúdo ao redor. Não sobrescreva edições do usuário em outras seções desse arquivo.
 
@@ -108,6 +108,8 @@ inclusion: always
 
 [resumo de uma linha do layout — "single-context" ou "multi-context"]. Veja `.kiro/steering/domain.md`.
 ```
+
+Apenas `agent-skills-config.md` tem `inclusion: always`, sendo o único arquivo carregado em toda interação. Os três arquivos de detalhe (`issue-tracker.md`, `triage-labels.md`, `domain.md`) são escritos com `inclusion: manual` e são puxados sob demanda, ou pelo agente referenciando explicitamente (`#issue-tracker`, `#triage-labels`, `#domain`) ou pelo usuário invocá-los como comandos slash. O bloco `## Agent skills` acima já é contexto suficiente para sempre carregar; os detalhes ficam fora do contexto até serem solicitados.
 
 Escolha o template seed correspondente para o issue tracker:
 

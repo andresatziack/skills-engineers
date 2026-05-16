@@ -1,3 +1,7 @@
+---
+inclusion: manual
+---
+
 # Issue tracker: GitHub
 
 Issues e PRDs deste repo vivem como issues do GitHub. Use o CLI `gh` para todas as operações.
