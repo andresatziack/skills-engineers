@@ -1,11 +1,11 @@
-# Good and Bad Tests
+# Testes Bons e Ruins
 
-## Good Tests
+## Testes Bons
 
-**Integration-style**: Test through real interfaces, not mocks of internal parts.
+**Integration-style**: Testam por interfaces reais, não por mocks de partes internas.
 
 ```typescript
-// GOOD: Tests observable behavior
+// BOM: Testa comportamento observável
 test("user can checkout with valid cart", async () => {
   const cart = createCart();
   cart.add(product);
@@ -14,20 +14,20 @@ test("user can checkout with valid cart", async () => {
 });
 ```
 
-Characteristics:
+Características:
 
-- Tests behavior users/callers care about
-- Uses public API only
-- Survives internal refactors
-- Describes WHAT, not HOW
-- One logical assertion per test
+- Testam comportamento que usuários/chamadores se importam
+- Usam apenas a API pública
+- Sobrevivem a refactors internos
+- Descrevem O QUÊ, não COMO
+- Uma asserção lógica por teste
 
-## Bad Tests
+## Testes Ruins
 
-**Implementation-detail tests**: Coupled to internal structure.
+**Testes de detalhe de implementação**: Acoplados a estrutura interna.
 
 ```typescript
-// BAD: Tests implementation details
+// RUIM: Testa detalhes de implementação
 test("checkout calls paymentService.process", async () => {
   const mockPayment = jest.mock(paymentService);
   await checkout(cart, payment);
@@ -35,24 +35,24 @@ test("checkout calls paymentService.process", async () => {
 });
 ```
 
-Red flags:
+Sinais de alerta:
 
-- Mocking internal collaborators
-- Testing private methods
-- Asserting on call counts/order
-- Test breaks when refactoring without behavior change
-- Test name describes HOW not WHAT
-- Verifying through external means instead of interface
+- Mockar colaboradores internos
+- Testar métodos privados
+- Assertar sobre contagens/ordens de chamada
+- Teste quebra ao refatorar sem mudança de comportamento
+- Nome do teste descreve COMO em vez de O QUÊ
+- Verificar por meios externos em vez de pela interface
 
 ```typescript
-// BAD: Bypasses interface to verify
+// RUIM: Contorna a interface para verificar
 test("createUser saves to database", async () => {
   await createUser({ name: "Alice" });
   const row = await db.query("SELECT * FROM users WHERE name = ?", ["Alice"]);
   expect(row).toBeDefined();
 });
 
-// GOOD: Verifies through interface
+// BOM: Verifica pela interface
 test("createUser makes user retrievable", async () => {
   const user = await createUser({ name: "Alice" });
   const retrieved = await getUser(user.id);

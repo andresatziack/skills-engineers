@@ -1,27 +1,27 @@
 ---
 name: grill-with-docs
-description: Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when user wants to stress-test a plan against their project's language and documented decisions.
+description: Sessão de grilling que confronta seu plano com o modelo de domínio existente, afia a terminologia e atualiza a documentação (CONTEXT.md, ADRs) no caminho conforme as decisões cristalizam. Use quando o usuário quer estressar um plano contra a linguagem do projeto e suas decisões documentadas.
 ---
 
 <what-to-do>
 
-Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
+Me entreviste implacavelmente sobre cada aspecto deste plano até alcançarmos um entendimento compartilhado. Caminhe por cada ramo da árvore de design, resolvendo dependências entre decisões uma por uma. Para cada pergunta, forneça a sua resposta recomendada.
 
-Ask the questions one at a time, waiting for feedback on each question before continuing.
+Faça as perguntas uma de cada vez, esperando feedback em cada pergunta antes de continuar.
 
-If a question can be answered by exploring the codebase, explore the codebase instead.
+Se uma pergunta puder ser respondida explorando a codebase, explore a codebase em vez disso.
 
 </what-to-do>
 
 <supporting-info>
 
-## Domain awareness
+## Consciência de domínio
 
-During codebase exploration, also look for existing documentation:
+Durante a exploração da codebase, procure também por documentação existente:
 
-### File structure
+### Estrutura de arquivos
 
-Most repos have a single context:
+A maioria dos repos tem um único contexto:
 
 ```
 /
@@ -33,56 +33,56 @@ Most repos have a single context:
 └── src/
 ```
 
-If a `CONTEXT-MAP.md` exists at the root, the repo has multiple contexts. The map points to where each one lives:
+Se um `CONTEXT-MAP.md` existe na raiz, o repo tem múltiplos contextos. O mapa aponta para onde cada um vive:
 
 ```
 /
 ├── CONTEXT-MAP.md
 ├── docs/
-│   └── adr/                          ← system-wide decisions
+│   └── adr/                          ← decisões de todo o sistema
 ├── src/
 │   ├── ordering/
 │   │   ├── CONTEXT.md
-│   │   └── docs/adr/                 ← context-specific decisions
+│   │   └── docs/adr/                 ← decisões específicas do contexto
 │   └── billing/
 │       ├── CONTEXT.md
 │       └── docs/adr/
 ```
 
-Create files lazily — only when you have something to write. If no `CONTEXT.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
+Crie arquivos preguiçosamente — só quando você tem algo para escrever. Se nenhum `CONTEXT.md` existe, crie um quando o primeiro termo for resolvido. Se nenhum `docs/adr/` existe, crie quando o primeiro ADR for necessário.
 
-## During the session
+## Durante a sessão
 
-### Challenge against the glossary
+### Confronte com o glossário
 
-When the user uses a term that conflicts with the existing language in `CONTEXT.md`, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y — which is it?"
+Quando o usuário usa um termo que conflita com a linguagem existente em `CONTEXT.md`, sinalize imediatamente. "Seu glossário define 'cancellation' como X, mas você parece estar querendo dizer Y — qual dos dois?"
 
-### Sharpen fuzzy language
+### Afie linguagem nebulosa
 
-When the user uses vague or overloaded terms, propose a precise canonical term. "You're saying 'account' — do you mean the Customer or the User? Those are different things."
+Quando o usuário usa termos vagos ou sobrecarregados, proponha um termo canônico preciso. "Você está dizendo 'account' — você quer dizer o Customer ou o User? São coisas diferentes."
 
-### Discuss concrete scenarios
+### Discuta cenários concretos
 
-When domain relationships are being discussed, stress-test them with specific scenarios. Invent scenarios that probe edge cases and force the user to be precise about the boundaries between concepts.
+Quando relações de domínio estão sendo discutidas, estresse-as com cenários específicos. Invente cenários que sondam casos de borda e forçam o usuário a ser preciso sobre as fronteiras entre conceitos.
 
-### Cross-reference with code
+### Cruze referências com o código
 
-When the user states how something works, check whether the code agrees. If you find a contradiction, surface it: "Your code cancels entire Orders, but you just said partial cancellation is possible — which is right?"
+Quando o usuário declara como algo funciona, cheque se o código concorda. Se você encontra uma contradição, traga à tona: "Seu código cancela Orders inteiras, mas você acabou de dizer que cancelamento parcial é possível — qual está certo?"
 
-### Update CONTEXT.md inline
+### Atualize CONTEXT.md no caminho
 
-When a term is resolved, update `CONTEXT.md` right there. Don't batch these up — capture them as they happen. Use the format in [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
+Quando um termo é resolvido, atualize `CONTEXT.md` ali mesmo. Não acumule esses updates — capture-os conforme acontecem. Use o formato em [CONTEXT-FORMAT.md](./CONTEXT-FORMAT.md).
 
-`CONTEXT.md` should be totally devoid of implementation details. Do not treat `CONTEXT.md` as a spec, a scratch pad, or a repository for implementation decisions. It is a glossary and nothing else.
+`CONTEXT.md` deve ser totalmente desprovido de detalhes de implementação. Não trate `CONTEXT.md` como uma spec, um rascunho ou um repositório de decisões de implementação. É um glossário e nada mais.
 
-### Offer ADRs sparingly
+### Ofereça ADRs com parcimônia
 
-Only offer to create an ADR when all three are true:
+Só ofereça criar um ADR quando todos os três forem verdade:
 
-1. **Hard to reverse** — the cost of changing your mind later is meaningful
-2. **Surprising without context** — a future reader will wonder "why did they do it this way?"
-3. **The result of a real trade-off** — there were genuine alternatives and you picked one for specific reasons
+1. **Difícil de reverter** — o custo de mudar de ideia depois é significativo
+2. **Surpreendente sem contexto** — um leitor futuro vai se perguntar "por que fizeram desse jeito?"
+3. **Resultado de um trade-off real** — havia alternativas genuínas e você escolheu uma por razões específicas
 
-If any of the three is missing, skip the ADR. Use the format in [ADR-FORMAT.md](./ADR-FORMAT.md).
+Se algum dos três está faltando, pule o ADR. Use o formato em [ADR-FORMAT.md](./ADR-FORMAT.md).
 
 </supporting-info>

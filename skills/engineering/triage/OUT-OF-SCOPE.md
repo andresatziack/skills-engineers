@@ -1,11 +1,11 @@
-# Out-of-Scope Knowledge Base
+# Base de Conhecimento Out-of-Scope
 
-The `.out-of-scope/` directory in a repo stores persistent records of rejected feature requests. It serves two purposes:
+O diretório `.out-of-scope/` num repo armazena registros persistentes de pedidos de feature rejeitados. Ele serve a dois propósitos:
 
-1. **Institutional memory** — why a feature was rejected, so the reasoning isn't lost when the issue is closed
-2. **Deduplication** — when a new issue comes in that matches a prior rejection, the skill can surface the previous decision instead of re-litigating it
+1. **Memória institucional** — por que uma feature foi rejeitada, para que o raciocínio não seja perdido quando a issue é fechada
+2. **Deduplicação** — quando uma nova issue chega que combina com uma rejeição prévia, a skill pode trazer à tona a decisão anterior em vez de re-litigar
 
-## Directory structure
+## Estrutura de diretório
 
 ```
 .out-of-scope/
@@ -14,11 +14,11 @@ The `.out-of-scope/` directory in a repo stores persistent records of rejected f
 └── graphql-api.md
 ```
 
-One file per **concept**, not per issue. Multiple issues requesting the same thing are grouped under one file.
+Um arquivo por **conceito**, não por issue. Múltiplas issues pedindo a mesma coisa são agrupadas sob um arquivo.
 
-## File format
+## Formato de arquivo
 
-The file should be written in a relaxed, readable style — more like a short design document than a database entry. Use paragraphs, code samples, and examples to make the reasoning clear and useful to someone encountering it for the first time.
+O arquivo deve ser escrito em estilo relaxado e legível — mais como um documento de design curto do que uma entrada de banco de dados. Use parágrafos, exemplos de código e exemplos para tornar o raciocínio claro e útil para alguém encontrando pela primeira vez.
 
 ```markdown
 # Dark Mode
@@ -53,49 +53,49 @@ interface ThemeConfig {
 - #134 — "Dark theme option"
 ```
 
-### Naming the file
+### Nomeando o arquivo
 
-Use a short, descriptive kebab-case name for the concept: `dark-mode.md`, `plugin-system.md`, `graphql-api.md`. The name should be recognizable enough that someone browsing the directory understands what was rejected without opening the file.
+Use um nome curto e descritivo em kebab-case para o conceito: `dark-mode.md`, `plugin-system.md`, `graphql-api.md`. O nome deve ser reconhecível o bastante para que alguém navegando pelo diretório entenda o que foi rejeitado sem abrir o arquivo.
 
-### Writing the reason
+### Escrevendo a razão
 
-The reason should be substantive — not "we don't want this" but why. Good reasons reference:
+A razão deve ser substantiva — não "não queremos isso" mas por quê. Boas razões referenciam:
 
-- Project scope or philosophy ("This project focuses on X; theming is a downstream concern")
-- Technical constraints ("Supporting this would require Y, which conflicts with our Z architecture")
-- Strategic decisions ("We chose to use A instead of B because...")
+- Escopo ou filosofia do projeto ("Este projeto foca em X; theming é uma preocupação a jusante")
+- Restrições técnicas ("Suportar isso exigiria Y, que conflita com nossa arquitetura Z")
+- Decisões estratégicas ("Escolhemos usar A em vez de B porque...")
 
-The reason should be durable. Avoid referencing temporary circumstances ("we're too busy right now") — those aren't real rejections, they're deferrals.
+A razão deve ser durável. Evite referenciar circunstâncias temporárias ("estamos ocupados demais agora") — essas não são rejeições reais, são adiamentos.
 
-## When to check `.out-of-scope/`
+## Quando checar `.out-of-scope/`
 
-During triage (Step 1: Gather context), read all files in `.out-of-scope/`. When evaluating a new issue:
+Durante a triagem (Passo 1: Reúna contexto), leia todos os arquivos em `.out-of-scope/`. Ao avaliar uma nova issue:
 
-- Check if the request matches an existing out-of-scope concept
-- Matching is by concept similarity, not keyword — "night theme" matches `dark-mode.md`
-- If there's a match, surface it to the maintainer: "This is similar to `.out-of-scope/dark-mode.md` — we rejected this before because [reason]. Do you still feel the same way?"
+- Cheque se o pedido combina com um conceito out-of-scope existente
+- Matching é por similaridade de conceito, não keyword — "night theme" combina com `dark-mode.md`
+- Se há um match, traga à tona para o mantenedor: "Isto é similar a `.out-of-scope/dark-mode.md` — rejeitamos isto antes porque [razão]. Você ainda sente o mesmo?"
 
-The maintainer may:
+O mantenedor pode:
 
-- **Confirm** — the new issue gets added to the existing file's "Prior requests" list, then closed
-- **Reconsider** — the out-of-scope file gets deleted or updated, and the issue proceeds through normal triage
-- **Disagree** — the issues are related but distinct, proceed with normal triage
+- **Confirmar** — a nova issue é adicionada à lista "Prior requests" do arquivo existente, depois fechada
+- **Reconsiderar** — o arquivo out-of-scope é deletado ou atualizado, e a issue prossegue pela triagem normal
+- **Discordar** — as issues estão relacionadas mas são distintas, prossiga com triagem normal
 
-## When to write to `.out-of-scope/`
+## Quando escrever em `.out-of-scope/`
 
-Only when an **enhancement** (not a bug) is rejected as `wontfix`. The flow:
+Apenas quando um **enhancement** (não um bug) é rejeitado como `wontfix`. O fluxo:
 
-1. Maintainer decides a feature request is out of scope
-2. Check if a matching `.out-of-scope/` file already exists
-3. If yes: append the new issue to the "Prior requests" list
-4. If no: create a new file with the concept name, decision, reason, and first prior request
-5. Post a comment on the issue explaining the decision and mentioning the `.out-of-scope/` file
-6. Close the issue with the `wontfix` label
+1. Mantenedor decide que um pedido de feature está fora de escopo
+2. Cheque se um arquivo `.out-of-scope/` correspondente já existe
+3. Se sim: anexe a nova issue à lista "Prior requests"
+4. Se não: crie um novo arquivo com o nome do conceito, decisão, razão e primeiro pedido prévio
+5. Poste um comentário na issue explicando a decisão e mencionando o arquivo `.out-of-scope/`
+6. Feche a issue com a label `wontfix`
 
-## Updating or removing out-of-scope files
+## Atualizando ou removendo arquivos out-of-scope
 
-If the maintainer changes their mind about a previously rejected concept:
+Se o mantenedor muda de ideia sobre um conceito previamente rejeitado:
 
-- Delete the `.out-of-scope/` file
-- The skill does not need to reopen old issues — they're historical records
-- The new issue that triggered the reconsideration proceeds through normal triage
+- Delete o arquivo `.out-of-scope/`
+- A skill não precisa reabrir issues antigas — elas são registros históricos
+- A nova issue que disparou a reconsideração prossegue pela triagem normal

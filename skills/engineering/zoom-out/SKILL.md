@@ -1,7 +1,7 @@
 ---
 name: zoom-out
-description: Tell the agent to zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.
+description: Diga ao agente para dar zoom out e fornecer contexto mais amplo ou uma perspectiva de mais alto nível. Use quando você não está familiar com uma seção do código ou precisa entender como ela se encaixa no quadro maior.
 disable-model-invocation: true
 ---
 
-I don't know this area of code well. Go up a layer of abstraction. Give me a map of all the relevant modules and callers, using the project's domain glossary vocabulary.
+Não conheço bem esta área de código. Suba uma camada de abstração. Me dê um mapa de todos os módulos e chamadores relevantes, usando o vocabulário do glossário de domínio do projeto.

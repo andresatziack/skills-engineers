@@ -1,40 +1,40 @@
 ---
 name: write-a-skill
-description: Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.
+description: Cria novas skills de agente com estrutura adequada, divulgação progressiva e recursos empacotados. Use quando o usuário quer criar, escrever ou construir uma nova skill.
 ---
 
 # Writing Skills
 
-## Process
+## Processo
 
-1. **Gather requirements** - ask user about:
-   - What task/domain does the skill cover?
-   - What specific use cases should it handle?
-   - Does it need executable scripts or just instructions?
-   - Any reference materials to include?
+1. **Reúna requisitos** - pergunte ao usuário sobre:
+   - Que tarefa/domínio a skill cobre?
+   - Quais casos de uso específicos ela deveria tratar?
+   - Ela precisa de scripts executáveis ou só instruções?
+   - Algum material de referência para incluir?
 
-2. **Draft the skill** - create:
-   - SKILL.md with concise instructions
-   - Additional reference files if content exceeds 500 lines
-   - Utility scripts if deterministic operations needed
+2. **Rascunhe a skill** - crie:
+   - SKILL.md com instruções concisas
+   - Arquivos de referência adicionais se o conteúdo exceder 500 linhas
+   - Scripts utilitários se operações determinísticas forem necessárias
 
-3. **Review with user** - present draft and ask:
-   - Does this cover your use cases?
-   - Anything missing or unclear?
-   - Should any section be more/less detailed?
+3. **Revise com o usuário** - apresente o rascunho e pergunte:
+   - Isto cobre seus casos de uso?
+   - Algo faltando ou pouco claro?
+   - Alguma seção deveria ser mais/menos detalhada?
 
-## Skill Structure
+## Estrutura da Skill
 
 ```
 skill-name/
-├── SKILL.md           # Main instructions (required)
-├── REFERENCE.md       # Detailed docs (if needed)
-├── EXAMPLES.md        # Usage examples (if needed)
-└── scripts/           # Utility scripts (if needed)
+├── SKILL.md           # Instruções principais (obrigatório)
+├── REFERENCE.md       # Docs detalhados (se necessário)
+├── EXAMPLES.md        # Exemplos de uso (se necessário)
+└── scripts/           # Scripts utilitários (se necessário)
     └── helper.js
 ```
 
-## SKILL.md Template
+## Template do SKILL.md
 
 ```md
 ---
@@ -46,72 +46,72 @@ description: Brief description of capability. Use when [specific triggers].
 
 ## Quick start
 
-[Minimal working example]
+[Exemplo mínimo funcional]
 
 ## Workflows
 
-[Step-by-step processes with checklists for complex tasks]
+[Processos passo a passo com checklists para tarefas complexas]
 
 ## Advanced features
 
-[Link to separate files: See [REFERENCE.md](REFERENCE.md)]
+[Link para arquivos separados: See [REFERENCE.md](REFERENCE.md)]
 ```
 
-## Description Requirements
+## Requisitos da Description
 
-The description is **the only thing your agent sees** when deciding which skill to load. It's surfaced in the system prompt alongside all other installed skills. Your agent reads these descriptions and picks the relevant skill based on the user's request.
+A description é **a única coisa que seu agente vê** ao decidir qual skill carregar. Ela aparece no system prompt junto com todas as outras skills instaladas. Seu agente lê essas descriptions e escolhe a skill relevante baseado no pedido do usuário.
 
-**Goal**: Give your agent just enough info to know:
+**Objetivo**: Dê ao seu agente apenas info suficiente para saber:
 
-1. What capability this skill provides
-2. When/why to trigger it (specific keywords, contexts, file types)
+1. Que capacidade esta skill provê
+2. Quando/por que disparar (palavras-chave específicas, contextos, tipos de arquivo)
 
-**Format**:
+**Formato**:
 
-- Max 1024 chars
-- Write in third person
-- First sentence: what it does
-- Second sentence: "Use when [specific triggers]"
+- Máx 1024 chars
+- Escreva em terceira pessoa
+- Primeira frase: o que ela faz
+- Segunda frase: "Use when [specific triggers]"
 
-**Good example**:
+**Bom exemplo**:
 
 ```
 Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when user mentions PDFs, forms, or document extraction.
 ```
 
-**Bad example**:
+**Mau exemplo**:
 
 ```
 Helps with documents.
 ```
 
-The bad example gives your agent no way to distinguish this from other document skills.
+O exemplo ruim não dá ao seu agente nenhuma forma de distinguir isto de outras skills de documento.
 
-## When to Add Scripts
+## Quando Adicionar Scripts
 
-Add utility scripts when:
+Adicione scripts utilitários quando:
 
-- Operation is deterministic (validation, formatting)
-- Same code would be generated repeatedly
-- Errors need explicit handling
+- A operação é determinística (validação, formatação)
+- O mesmo código seria gerado repetidamente
+- Erros precisam de tratamento explícito
 
-Scripts save tokens and improve reliability vs generated code.
+Scripts economizam tokens e melhoram confiabilidade vs código gerado.
 
-## When to Split Files
+## Quando Dividir Arquivos
 
-Split into separate files when:
+Divida em arquivos separados quando:
 
-- SKILL.md exceeds 100 lines
-- Content has distinct domains (finance vs sales schemas)
-- Advanced features are rarely needed
+- SKILL.md excede 100 linhas
+- O conteúdo tem domínios distintos (schemas de finanças vs vendas)
+- Features avançadas são raramente necessárias
 
-## Review Checklist
+## Checklist de Revisão
 
-After drafting, verify:
+Depois de rascunhar, verifique:
 
-- [ ] Description includes triggers ("Use when...")
-- [ ] SKILL.md under 100 lines
-- [ ] No time-sensitive info
-- [ ] Consistent terminology
-- [ ] Concrete examples included
-- [ ] References one level deep
+- [ ] Description inclui triggers ("Use when...")
+- [ ] SKILL.md abaixo de 100 linhas
+- [ ] Sem info sensível ao tempo
+- [ ] Terminologia consistente
+- [ ] Exemplos concretos incluídos
+- [ ] Referências a um nível de profundidade
