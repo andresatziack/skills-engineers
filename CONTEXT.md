@@ -13,7 +13,7 @@ Uma única unidade rastreada de trabalho dentro de um **Issue tracker** — um b
 _Evite_: ticket (use somente ao citar sistemas externos que os chamam de tickets)
 
 **Triage role**:
-Um rótulo canônico de máquina de estados aplicado a uma **Issue** durante a triagem (por exemplo, `needs-triage`, `ready-for-afk`). Cada role mapeia para uma string de label real no **Issue tracker** via `docs/agents/triage-labels.md`.
+Um rótulo canônico de máquina de estados aplicado a uma **Issue** durante a triagem (por exemplo, `needs-triage`, `ready-for-afk`). Cada role mapeia para uma string de label real no **Issue tracker** via `.kiro/steering/triage-labels.md`.
 
 ## Relações
 
