@@ -1,3 +1,7 @@
+---
+inclusion: manual
+---
+
 # Issue tracker: GitLab
 
 Issues e PRDs deste repo vivem como issues do GitLab. Use o CLI [`glab`](https://gitlab.com/gitlab-org/cli) para todas as operações.

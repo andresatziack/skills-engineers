@@ -1,3 +1,7 @@
+---
+inclusion: manual
+---
+
 # Issue tracker: Markdown Local
 
 Issues e PRDs deste repo vivem como arquivos markdown em `.scratch/`.

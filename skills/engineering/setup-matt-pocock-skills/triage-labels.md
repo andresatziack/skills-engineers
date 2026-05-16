@@ -1,3 +1,7 @@
+---
+inclusion: manual
+---
+
 # Triage Labels
 
 As skills falam em termos de cinco papéis canônicos de triagem. Este arquivo mapeia esses papéis para as strings de label de fato usadas no issue tracker deste repo.

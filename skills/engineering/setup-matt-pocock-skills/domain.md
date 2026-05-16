@@ -1,3 +1,7 @@
+---
+inclusion: manual
+---
+
 # Domain Docs
 
 Como as skills de engenharia devem consumir a documentação de domínio deste repo ao explorar a codebase.
