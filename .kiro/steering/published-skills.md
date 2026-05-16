@@ -20,4 +20,4 @@ This file is the canonical inventory of skills shipped to end users. Anything in
 - [productivity/grill-me](../../skills/productivity/grill-me)
 - [productivity/handoff](../../skills/productivity/handoff)
 - [productivity/write-a-skill](../../skills/productivity/write-a-skill)
-- [misc/git-guardrails-claude-code](../../skills/misc/git-guardrails-claude-code)
+- [misc/git-guardrails](../../skills/misc/git-guardrails)
