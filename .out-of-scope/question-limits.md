@@ -1,18 +1,18 @@
-# Hard limits on the number of questions during grilling
+# Limites rígidos no número de perguntas durante o grilling
 
-The `/grill-me` skill (and grilling sessions inside other skills) does not enforce a maximum number of questions. Requests to add a configurable cap or hard ceiling are out of scope.
+A skill `/grill-me` (e as sessões de grilling dentro de outras skills) não impõe um número máximo de perguntas. Pedidos para adicionar um teto configurável ou um limite rígido estão fora do escopo.
 
-## Why this is out of scope
+## Por que isso está fora do escopo
 
-Grilling is intentionally open-ended. The point is to keep digging until each branch of the decision tree is resolved — some plans need three questions, some need fifty. A fixed cap would either cut off useful exploration on hard problems or feel arbitrary on easy ones.
+O grilling é intencionalmente aberto. O ponto é continuar cavando até que cada ramo da árvore de decisão seja resolvido — alguns planos precisam de três perguntas, outros precisam de cinquenta. Um teto fixo cortaria exploração útil em problemas difíceis ou pareceria arbitrário em problemas fáceis.
 
-If a session feels too long, the right escape hatches already exist:
+Se uma sessão parece longa demais, as válvulas de escape certas já existem:
 
-- The user can stop the session at any time and accept the current state of the plan.
-- The user can tell the model to wrap up, summarise, and move on — natural-language steering is the intended control surface, not a numeric limit.
+- O usuário pode parar a sessão a qualquer momento e aceitar o estado atual do plano.
+- O usuário pode dizer ao modelo para concluir, resumir e seguir em frente — direção em linguagem natural é a superfície de controle pretendida, não um limite numérico.
 
-Adding a hard cap would also conflate two different failure modes: a model that asks too many questions because the plan is genuinely under-specified (working as intended) vs. a model that asks redundant or low-value questions (a prompt-quality issue, not a quantity issue). The fix for the latter belongs in the skill prompt, not in a counter.
+Adicionar um teto rígido também confundiria dois modos de falha diferentes: um modelo que faz perguntas demais porque o plano está genuinamente subespecificado (funcionando como esperado) vs. um modelo que faz perguntas redundantes ou de baixo valor (um problema de qualidade do prompt, não de quantidade). O conserto para o segundo caso pertence ao prompt da skill, não a um contador.
 
-## Prior requests
+## Pedidos anteriores
 
 - #44 — "Codex just asked me 200 questions"

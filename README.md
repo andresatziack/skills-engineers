@@ -8,114 +8,114 @@
   </a>
 </p>
 
-# Skills For Real Engineers
+# Skills para Engenheiros de Verdade
 
 [![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
 
-My agent skills that I use every day to do real engineering - not vibe coding.
+Minhas skills de agente que uso todo dia para fazer engenharia de verdade — não vibe coding.
 
-Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.
+Desenvolver aplicações reais é difícil. Abordagens como GSD, BMAD e Spec-Kit tentam ajudar tomando posse do processo. Mas, ao fazer isso, elas tiram o seu controle e tornam difícil resolver bugs no próprio processo.
 
-These skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.
+Estas skills foram pensadas para serem pequenas, fáceis de adaptar e componíveis. Elas funcionam com qualquer modelo. Foram baseadas em décadas de experiência em engenharia. Brinque com elas. Faça delas as suas. Aproveite.
 
-If you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:
+Se você quiser acompanhar mudanças nestas skills, e quaisquer novas que eu criar, pode entrar para a minha newsletter junto com cerca de 60.000 outras pessoas dev:
 
-[Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)
+[Inscreva-se na newsletter](https://www.aihero.dev/s/skills-newsletter)
 
-## Quickstart (30-second setup)
+## Início rápido (setup de 30 segundos)
 
-1. Run the skills.sh installer:
+1. Rode o instalador skills.sh:
 
 ```bash
 npx skills@latest add mattpocock/skills
 ```
 
-2. Pick the skills you want, and which coding agents you want to install them on. **Make sure you select `/setup-matt-pocock-skills`**.
+2. Escolha as skills que você quer e em quais agentes de código quer instalá-las. **Garanta que você selecionou `/setup-matt-pocock-skills`**.
 
-3. Run `/setup-matt-pocock-skills` in your agent. It will:
-   - Ask you which issue tracker you want to use (GitHub, Linear, or local files)
-   - Ask you what labels you apply to ticks when you triage them (`/triage` uses labels)
-   - Ask you where you want to save any docs we create
+3. Rode `/setup-matt-pocock-skills` no seu agente. Ele vai:
+   - Perguntar qual issue tracker você quer usar (GitHub, Linear ou arquivos locais)
+   - Perguntar quais labels você aplica aos tickets quando faz triagem (`/triage` usa labels)
+   - Perguntar onde você quer salvar quaisquer docs que criarmos
 
-4. Bam - you're ready to go.
+4. Pronto — você está com tudo certo para começar.
 
-## Why These Skills Exist
+## Por Que Estas Skills Existem
 
-I built these skills as a way to fix common failure modes I see with Kiro, Codex, and other coding agents.
+Eu construí estas skills como uma forma de corrigir modos comuns de falha que vejo com Kiro, Codex e outros agentes de código.
 
-### #1: The Agent Didn't Do What I Want
+### #1: O Agente Não Fez o Que Eu Queria
 
 > "No-one knows exactly what they want"
 >
 > David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
-**The Problem**. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.
+**O Problema**. O modo de falha mais comum no desenvolvimento de software é o desalinhamento. Você acha que a pessoa dev sabe o que você quer. Aí você vê o que ela construiu — e percebe que ela não tinha entendido você.
 
-This is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a **grilling session** - getting the agent to ask you detailed questions about what you're building.
+Isso é exatamente igual na era da IA. Existe uma lacuna de comunicação entre você e o agente. A correção para isso é uma **sessão de grilling** — fazer o agente te interrogar com perguntas detalhadas sobre o que você está construindo.
 
-**The Fix** is to use:
+**A Correção** é usar:
 
-- [`/grill-me`](./skills/productivity/grill-me/SKILL.md) - for non-code uses
-- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) - same as [`/grill-me`](./skills/productivity/grill-me/SKILL.md), but adds more goodies (see below)
+- [`/grill-me`](./skills/productivity/grill-me/SKILL.md) — para usos não relacionados a código
+- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) — igual a [`/grill-me`](./skills/productivity/grill-me/SKILL.md), mas com extras (veja abaixo)
 
-These are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.
+Estas são minhas skills mais populares. Elas te ajudam a se alinhar com o agente antes de começar e a pensar profundamente sobre a mudança que você está fazendo. Use-as _toda_ vez que quiser fazer uma mudança.
 
-### #2: The Agent Is Way Too Verbose
+### #2: O Agente Está Verboso Demais
 
 > With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model.
 >
 > Eric Evans, [Domain-Driven-Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)
 
-**The Problem**: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.
+**O Problema**: No início de um projeto, devs e as pessoas para quem estão construindo o software (os domain experts) costumam falar línguas diferentes.
 
-I felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.
+Eu sentia a mesma tensão com meus agentes. Agentes geralmente são jogados em um projeto e precisam descobrir o jargão por conta própria. Aí usam 20 palavras quando 1 bastaria.
 
-**The Fix** for this is a shared language. It's a document that helps agents decode the jargon used in the project.
+**A Correção** para isso é uma linguagem compartilhada. É um documento que ajuda os agentes a decodificar o jargão usado no projeto.
 
 <details>
 <summary>
-Example
+Exemplo
 </summary>
 
-Here's an example [`CONTEXT.md`](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md), from my `course-video-manager` repo. Which one is easier to read?
+Aqui está um exemplo de [`CONTEXT.md`](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md), do meu repo `course-video-manager`. Qual é mais fácil de ler?
 
-- **BEFORE**: "There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)"
-- **AFTER**: "There's a problem with the materialization cascade"
+- **ANTES**: "Tem um problema quando uma aula dentro de uma seção de um curso é tornada 'real' (isto é, ganha um lugar no sistema de arquivos)"
+- **DEPOIS**: "Tem um problema com a materialization cascade"
 
-This concision pays off session after session.
+Essa concisão paga dividendos sessão após sessão.
 
 </details>
 
-This is built into [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.
+Isso está embutido em [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). É uma sessão de grilling, mas que te ajuda a construir uma linguagem compartilhada com a IA e a documentar decisões difíceis de explicar em ADRs.
 
-It's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.
+É difícil descrever o quão poderoso isso é. Pode ser a técnica mais legal deste repositório. Tente e veja.
 
 > [!TIP]
-> A shared language has many other benefits than reducing verbosity:
+> Uma linguagem compartilhada tem muitos outros benefícios além de reduzir verbosidade:
 >
-> - **Variables, functions and files are named consistently**, using the shared language
-> - As a result, the **codebase is easier to navigate** for the agent
-> - The agent also **spends fewer tokens on thinking**, because it has access to a more concise language
+> - **Variáveis, funções e arquivos são nomeados de forma consistente**, usando a linguagem compartilhada
+> - Como resultado, a **codebase fica mais fácil de navegar** para o agente
+> - O agente também **gasta menos tokens pensando**, porque tem acesso a uma linguagem mais concisa
 
-### #3: The Code Doesn't Work
+### #3: O Código Não Funciona
 
-> "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big."
+> "Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that's too big."
 >
 > David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)
 
-**The Problem**: Let's say that you and the agent are aligned on what to build. What happens when the agent _still_ produces crap?
+**O Problema**: Digamos que você e o agente estejam alinhados sobre o que construir. O que acontece quando o agente _ainda assim_ produz porcaria?
 
-It's time to look at your feedback loops. Without feedback on how the code it produces actually runs, the agent will be flying blind.
+É hora de olhar para os seus loops de feedback. Sem feedback sobre como o código que ele produz realmente roda, o agente vai estar voando às cegas.
 
-**The Fix**: You need the usual tranche of feedback loops: static types, browser access, and automated tests.
+**A Correção**: Você precisa do conjunto usual de loops de feedback: tipos estáticos, acesso ao browser e testes automatizados.
 
-For automated tests, a red-green-refactor loop is critical. This is where the agent writes a failing test first, then fixes the test. This helps give the agent a consistent level of feedback that results in far better code.
+Para testes automatizados, um loop red-green-refactor é crítico. Aí o agente escreve um teste que falha primeiro e depois faz o teste passar. Isso dá ao agente um nível consistente de feedback que resulta em código muito melhor.
 
-I've built a **[`/tdd`](./skills/engineering/tdd/SKILL.md) skill** you can slot into any project. It encourages red-green-refactor and gives the agent plenty of guidance on what makes good and bad tests.
+Eu construí uma **skill [`/tdd`](./skills/engineering/tdd/SKILL.md)** que você pode encaixar em qualquer projeto. Ela incentiva red-green-refactor e dá ao agente bastante orientação sobre o que torna um teste bom ou ruim.
 
-For debugging, I've also built a **[`/diagnose`](./skills/engineering/diagnose/SKILL.md)** skill that wraps best debugging practices into a simple loop.
+Para debug, também construí uma skill **[`/diagnose`](./skills/engineering/diagnose/SKILL.md)** que envolve as melhores práticas de debug em um loop simples.
 
-### #4: We Built A Ball Of Mud
+### #4: A Gente Construiu Uma Bola de Lama
 
 > "Invest in the design of the system _every day_."
 >
@@ -125,52 +125,52 @@ For debugging, I've also built a **[`/diagnose`](./skills/engineering/diagnose/S
 >
 > John Ousterhout, [A Philosophy Of Software Design](https://www.amazon.co.uk/Philosophy-Software-Design-2nd/dp/173210221X)
 
-**The Problem**: Most apps built with agents are complex and hard to change. Because agents can radically speed up coding, they also accelerate software entropy. Codebases get more complex at an unprecedented rate.
+**O Problema**: A maior parte dos apps construídos com agentes é complexa e difícil de mudar. Como agentes podem acelerar radicalmente a escrita de código, eles também aceleram a entropia do software. Codebases ficam mais complexas em um ritmo sem precedentes.
 
-**The Fix** for this is a radical new approach to AI-powered development: caring about the design of the code.
+**A Correção** para isso é uma abordagem radicalmente nova para o desenvolvimento orientado a IA: se importar com o design do código.
 
-This is built in to every layer of these skills:
+Isso está embutido em todas as camadas destas skills:
 
-- [`/to-prd`](./skills/engineering/to-prd/SKILL.md) quizzes you about which modules you're touching before creating a PRD
-- [`/zoom-out`](./skills/engineering/zoom-out/SKILL.md) tells the agent to explain code in the context of the whole system
+- [`/to-prd`](./skills/engineering/to-prd/SKILL.md) te interroga sobre quais módulos você está mexendo antes de criar um PRD
+- [`/zoom-out`](./skills/engineering/zoom-out/SKILL.md) diz ao agente para explicar código no contexto do sistema inteiro
 
-And crucially, [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) helps you rescue a codebase that has become a ball of mud. I recommend running it on your codebase once every few days.
+E, crucialmente, [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) te ajuda a resgatar uma codebase que virou uma bola de lama. Recomendo rodá-la na sua codebase a cada poucos dias.
 
-### Summary
+### Resumo
 
-Software engineering fundamentals matter more than ever. These skills are my best effort at condensing these fundamentals into repeatable practices, to help you ship the best apps of your career. Enjoy.
+Os fundamentos de engenharia de software importam mais do que nunca. Estas skills são meu melhor esforço para condensar esses fundamentos em práticas repetíveis, para te ajudar a entregar os melhores apps da sua carreira. Aproveite.
 
-## Reference
+## Referência
 
-### Engineering
+### Engenharia
 
-Skills I use daily for code work.
+Skills que uso diariamente para trabalho de código.
 
-- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Disciplined diagnosis loop for hard bugs and performance regressions: reproduce → minimise → hypothesise → instrument → fix → regression-test.
-- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates `CONTEXT.md` and ADRs inline.
-- **[triage](./skills/engineering/triage/SKILL.md)** — Triage issues through a state machine of triage roles.
-- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Find deepening opportunities in a codebase, informed by the domain language in `CONTEXT.md` and the decisions in `docs/adr/`.
-- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** — Scaffold the per-repo config (issue tracker, triage label vocabulary, domain doc layout) that the other engineering skills consume. Run once per repo before using `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out`.
-- **[tdd](./skills/engineering/tdd/SKILL.md)** — Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.
-- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Break any plan, spec, or PRD into independently-grabbable GitHub issues using vertical slices.
-- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Turn the current conversation context into a PRD and submit it as a GitHub issue. No interview — just synthesizes what you've already discussed.
-- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Tell the agent to zoom out and give broader context or a higher-level perspective on an unfamiliar section of code.
-- **[prototype](./skills/engineering/prototype/SKILL.md)** — Build a throwaway prototype to flesh out a design — either a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route.
+- **[diagnose](./skills/engineering/diagnose/SKILL.md)** — Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance: reproduzir → minimizar → hipotetizar → instrumentar → corrigir → teste de regressão.
+- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)** — Sessão de grilling que confronta seu plano com o modelo de domínio existente, afia a terminologia e atualiza `CONTEXT.md` e ADRs no caminho.
+- **[triage](./skills/engineering/triage/SKILL.md)** — Faz triagem de issues por meio de uma máquina de estados de papéis de triagem.
+- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)** — Encontra oportunidades de aprofundamento numa codebase, informada pela linguagem de domínio em `CONTEXT.md` e pelas decisões em `docs/adr/`.
+- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)** — Faz o scaffold da configuração por repositório (issue tracker, vocabulário de labels de triagem, layout dos docs de domínio) que as outras skills de engenharia consomem. Execute uma vez por repositório antes de usar `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out`.
+- **[tdd](./skills/engineering/tdd/SKILL.md)** — Desenvolvimento orientado a testes com um loop red-green-refactor. Constrói features ou corrige bugs uma fatia vertical por vez.
+- **[to-issues](./skills/engineering/to-issues/SKILL.md)** — Quebra qualquer plano, spec ou PRD em issues do GitHub independentemente pegáveis usando fatias verticais.
+- **[to-prd](./skills/engineering/to-prd/SKILL.md)** — Transforma o contexto da conversa atual em um PRD e o submete como uma issue no GitHub. Sem entrevista — só sintetiza o que você já discutiu.
+- **[zoom-out](./skills/engineering/zoom-out/SKILL.md)** — Diga ao agente para dar zoom out e fornecer contexto mais amplo ou uma perspectiva de mais alto nível sobre uma seção desconhecida do código.
+- **[prototype](./skills/engineering/prototype/SKILL.md)** — Construa um protótipo descartável para amadurecer um design — ou um app de terminal executável para perguntas de estado/lógica de negócio, ou várias variações radicalmente diferentes de UI alternáveis a partir de uma única rota.
 
-### Productivity
+### Produtividade
 
-General workflow tools, not code-specific.
+Ferramentas gerais de fluxo de trabalho, não específicas de código.
 
-- **[caveman](./skills/productivity/caveman/SKILL.md)** — Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy.
-- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
-- **[handoff](./skills/productivity/handoff/SKILL.md)** — Compact the current conversation into a handoff document so another agent can continue the work.
-- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Create new skills with proper structure, progressive disclosure, and bundled resources.
+- **[caveman](./skills/productivity/caveman/SKILL.md)** — Modo de comunicação ultracomprimido. Reduz o uso de tokens em ~75% cortando enchimento e mantendo precisão técnica completa.
+- **[grill-me](./skills/productivity/grill-me/SKILL.md)** — Seja entrevistado implacavelmente sobre um plano ou design até que cada ramo da árvore de decisão esteja resolvido.
+- **[handoff](./skills/productivity/handoff/SKILL.md)** — Compacta a conversa atual em um documento de handoff para que outro agente possa continuar o trabalho.
+- **[write-a-skill](./skills/productivity/write-a-skill/SKILL.md)** — Cria novas skills com estrutura adequada, divulgação progressiva e recursos empacotados.
 
-### Misc
+### Diversos
 
-Tools I keep around but rarely use.
+Ferramentas que mantenho por perto, mas que uso raramente.
 
-- **[git-guardrails](./skills/misc/git-guardrails/SKILL.md)** — Set up a Kiro hook to block dangerous git commands (push, reset --hard, clean, etc.) before they execute.
-- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migrate test files from `as` type assertions to @total-typescript/shoehorn.
-- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Create exercise directory structures with sections, problems, solutions, and explainers.
-- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Set up Husky pre-commit hooks with lint-staged, Prettier, type checking, and tests.
+- **[git-guardrails](./skills/misc/git-guardrails/SKILL.md)** — Configura um hook do Kiro para bloquear comandos git perigosos (push, reset --hard, clean, etc.) antes que eles executem.
+- **[migrate-to-shoehorn](./skills/misc/migrate-to-shoehorn/SKILL.md)** — Migra arquivos de teste de assertions de tipo `as` para @total-typescript/shoehorn.
+- **[scaffold-exercises](./skills/misc/scaffold-exercises/SKILL.md)** — Cria estruturas de diretórios de exercícios com seções, problemas, soluções e explainers.
+- **[setup-pre-commit](./skills/misc/setup-pre-commit/SKILL.md)** — Configura hooks de pre-commit do Husky com lint-staged, Prettier, type checking e testes.

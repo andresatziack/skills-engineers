@@ -2,17 +2,17 @@
 inclusion: always
 ---
 
-Skills are organized into bucket folders under `skills/`:
+As skills são organizadas em pastas-bucket sob `skills/`:
 
-- `engineering/` — daily code work
-- `productivity/` — daily non-code workflow tools
-- `misc/` — kept around but rarely used
-- `personal/` — tied to my own setup, not promoted
-- `in-progress/` — drafts not yet ready to ship
-- `deprecated/` — no longer used
+- `engineering/` — trabalho de código no dia a dia
+- `productivity/` — ferramentas de fluxo de trabalho não relacionadas a código no dia a dia
+- `misc/` — mantidas por perto, mas usadas raramente
+- `personal/` — atreladas ao meu próprio setup, não promovidas
+- `in-progress/` — rascunhos ainda não prontos para serem publicados
+- `deprecated/` — não são mais usadas
 
-Every skill in `engineering/`, `productivity/`, or `misc/` must have a reference in the top-level `README.md` and an entry in `.kiro/steering/published-skills.md`. Skills in `personal/`, `in-progress/`, and `deprecated/` must not appear in either.
+Toda skill em `engineering/`, `productivity/` ou `misc/` precisa ter uma referência no `README.md` de nível superior e uma entrada em `.kiro/steering/published-skills.md`. Skills em `personal/`, `in-progress/` e `deprecated/` não devem aparecer em nenhum dos dois.
 
-Each skill entry in the top-level `README.md` must link the skill name to its `SKILL.md`.
+Cada entrada de skill no `README.md` de nível superior deve linkar o nome da skill ao seu `SKILL.md`.
 
-Each bucket folder has a `README.md` that lists every skill in the bucket with a one-line description, with the skill name linked to its `SKILL.md`.
+Cada pasta-bucket tem um `README.md` que lista cada skill do bucket com uma descrição de uma linha, com o nome da skill linkado ao seu `SKILL.md`.

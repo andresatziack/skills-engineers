@@ -3,27 +3,27 @@ inclusion: fileMatch
 fileMatchPattern: "skills/**/SKILL.md"
 ---
 
-# Skill authoring rules
+# Regras de autoria de skills
 
-These rules apply when authoring or editing any `SKILL.md` under `skills/`.
+Estas regras se aplicam ao escrever ou editar qualquer `SKILL.md` sob `skills/`.
 
 ## Front-matter
 
-Every `SKILL.md` begins with a YAML front-matter block delimited by `---` lines. Required keys:
+Todo `SKILL.md` começa com um bloco YAML de front-matter delimitado por linhas `---`. Chaves obrigatórias:
 
-- `name`: the kebab-case slug of the skill. It MUST match the folder name that contains the `SKILL.md` (e.g. `skills/engineering/tdd/SKILL.md` has `name: tdd`).
-- `description`: a one-paragraph trigger description. The phrasing should match how the user invokes the skill, because the agent uses this string to decide when the skill applies. Write it from the perspective of "use this skill when the user wants to ...".
+- `name`: o slug em kebab-case da skill. PRECISA bater com o nome da pasta que contém o `SKILL.md` (por exemplo, `skills/engineering/tdd/SKILL.md` tem `name: tdd`).
+- `description`: uma descrição-gatilho de um parágrafo. O fraseado deve combinar com a forma como o usuário invoca a skill, porque o agente usa essa string para decidir quando a skill se aplica. Escreva da perspectiva "use esta skill quando o usuário quiser ...".
 
-Optional keys:
+Chaves opcionais:
 
-- `disable-model-invocation: true` — set this on setup-style skills that should only be invoked explicitly by the user, never auto-triggered by the agent based on the description.
+- `disable-model-invocation: true` — defina nas skills do tipo setup que só devem ser invocadas explicitamente pelo usuário, nunca disparadas automaticamente pelo agente com base na descrição.
 
-## File layout
+## Layout de arquivos
 
-- The skill's main entry point is `SKILL.md` at the root of the skill folder.
-- Sub-pages (e.g. `tdd/deep-modules.md`, `tdd/mocking.md`) live alongside `SKILL.md` in the same folder. They MUST be linked from `SKILL.md` so the agent can discover them.
-- Bundled scripts live under `<skill>/scripts/` (e.g. `diagnose/scripts/hitl-loop.template.sh`). Reference them from `SKILL.md` with a relative path.
+- O ponto de entrada principal da skill é o `SKILL.md` na raiz da pasta da skill.
+- Subpáginas (por exemplo, `tdd/deep-modules.md`, `tdd/mocking.md`) ficam ao lado do `SKILL.md` na mesma pasta. Elas PRECISAM estar linkadas a partir do `SKILL.md` para que o agente possa descobri-las.
+- Scripts empacotados ficam sob `<skill>/scripts/` (por exemplo, `diagnose/scripts/hitl-loop.template.sh`). Referencie-os a partir do `SKILL.md` com um caminho relativo.
 
-## Slug consistency
+## Consistência de slug
 
-The folder name, the `name:` front-matter value, and any references to the skill in the top-level `README.md`, the bucket `README.md`, and `.kiro/steering/published-skills.md` MUST all use the same kebab-case slug.
+O nome da pasta, o valor de `name:` no front-matter e quaisquer referências à skill no `README.md` de nível superior, no `README.md` do bucket e em `.kiro/steering/published-skills.md` PRECISAM todos usar o mesmo slug em kebab-case.

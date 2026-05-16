@@ -2,9 +2,9 @@
 inclusion: manual
 ---
 
-# Published skills
+# Skills publicadas
 
-This file is the canonical inventory of skills shipped to end users. Anything in `engineering/`, `productivity/`, or `misc/` belongs here; skills in `personal/`, `in-progress/`, and `deprecated/` do not. When a skill is added, removed, or renamed in those three buckets, update this list to match.
+Este arquivo é o inventário canônico das skills enviadas aos usuários finais. Tudo em `engineering/`, `productivity/` ou `misc/` pertence aqui; skills em `personal/`, `in-progress/` e `deprecated/` não. Quando uma skill é adicionada, removida ou renomeada nesses três buckets, atualize esta lista para refletir.
 
 - [engineering/diagnose](../../skills/engineering/diagnose)
 - [engineering/grill-with-docs](../../skills/engineering/grill-with-docs)
