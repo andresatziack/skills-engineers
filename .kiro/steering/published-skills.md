@@ -21,3 +21,6 @@ Este arquivo é o inventário canônico das skills enviadas aos usuários finais
 - [productivity/handoff](../../skills/productivity/handoff)
 - [productivity/write-a-skill](../../skills/productivity/write-a-skill)
 - [misc/git-guardrails](../../skills/misc/git-guardrails)
+- [misc/migrate-to-shoehorn](../../skills/misc/migrate-to-shoehorn)
+- [misc/scaffold-exercises](../../skills/misc/scaffold-exercises)
+- [misc/setup-pre-commit](../../skills/misc/setup-pre-commit)
