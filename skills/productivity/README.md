@@ -1,8 +1,8 @@
-# Productivity
+# Produtividade
 
-General workflow tools, not code-specific.
+Ferramentas gerais de fluxo de trabalho, não específicas de código.
 
-- **[caveman](./caveman/SKILL.md)** — Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler while keeping full technical accuracy.
-- **[grill-me](./grill-me/SKILL.md)** — Get relentlessly interviewed about a plan or design until every branch of the decision tree is resolved.
-- **[handoff](./handoff/SKILL.md)** — Compact the current conversation into a handoff document so another agent can continue the work.
-- **[write-a-skill](./write-a-skill/SKILL.md)** — Create new skills with proper structure, progressive disclosure, and bundled resources.
+- **[caveman](./caveman/SKILL.md)** — Modo de comunicação ultracomprimido. Reduz o uso de tokens em ~75% cortando enchimento e mantendo precisão técnica completa.
+- **[grill-me](./grill-me/SKILL.md)** — Seja entrevistado implacavelmente sobre um plano ou design até que cada ramo da árvore de decisão esteja resolvido.
+- **[handoff](./handoff/SKILL.md)** — Compacta a conversa atual em um documento de handoff para que outro agente possa continuar o trabalho.
+- **[write-a-skill](./write-a-skill/SKILL.md)** — Cria novas skills com estrutura adequada, divulgação progressiva e recursos empacotados.
