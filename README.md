@@ -10,8 +10,6 @@
 
 # Skills para Engenheiros de Verdade
 
-[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)
-
 Minhas skills de agente que uso todo dia para fazer engenharia de verdade — não vibe coding.
 
 Desenvolver aplicações reais é difícil. Abordagens como GSD, BMAD e Spec-Kit tentam ajudar tomando posse do processo. Mas, ao fazer isso, elas tiram o seu controle e tornam difícil resolver bugs no próprio processo.
@@ -22,26 +20,53 @@ Se você quiser acompanhar mudanças nestas skills, e quaisquer novas que eu cri
 
 [Inscreva-se na newsletter](https://www.aihero.dev/s/skills-newsletter)
 
-## Início rápido (setup de 30 segundos)
+## Como instalar no Kiro
 
-1. Rode o instalador skills.sh:
+1. Clone este repositório:
 
 ```bash
-npx skills@latest add mattpocock/skills
+git clone https://github.com/andresatziack/skills-engineers.git
+cd skills-engineers
 ```
 
-2. Escolha as skills que você quer e em quais agentes de código quer instalá-las. **Garanta que você selecionou `/setup-matt-pocock-skills`**.
+2. Rode o script `link-skills.sh` para criar uma pasta plana com todas as skills não-deprecated no seu `$HOME`:
 
-3. Rode `/setup-matt-pocock-skills` no seu agente. Ele vai:
-   - Perguntar qual issue tracker você quer usar (GitHub, Linear ou arquivos locais)
+```bash
+bash scripts/link-skills.sh
+```
+
+Por padrão, o destino é `$HOME/.local/share/skills-engineers/`. Você pode passar outro caminho como primeiro argumento se preferir (ex.: `bash scripts/link-skills.sh ~/skills`).
+
+3. Para ativar uma skill em um workspace Kiro, copie o `SKILL.md` correspondente para `<workspace>/.kiro/steering/<slug>.md` e ajuste o front-matter para `inclusion: manual`. Exemplo com a skill `grill-me`:
+
+```bash
+cp ~/.local/share/skills-engineers/grill-me/SKILL.md <workspace>/.kiro/steering/grill-me.md
+```
+
+Depois edite o bloco YAML do topo do arquivo copiado para que ele fique assim (mantendo `name:` e `description:` originais e adicionando `inclusion: manual` no mesmo bloco):
+
+```yaml
+---
+name: grill-me
+description: ...
+inclusion: manual
+---
+```
+
+Se preferir, substitua o bloco inteiro por apenas `---\ninclusion: manual\n---`. Sem `inclusion:`, o Kiro trata o arquivo como `inclusion: always` por default e o injeta em toda interação. Para o racional completo desse passo, veja [`.kiro/MIGRATION-NOTES.md`](./.kiro/MIGRATION-NOTES.md).
+
+4. Com `inclusion: manual`, a skill fica invocável por `#<slug>` em chat (ex.: `#grill-me`) ou como comando slash (ex.: `/grill-me`).
+
+5. Para começar a usar de cara, copie a skill `setup-matt-pocock-skills` para `<workspace>/.kiro/steering/setup-matt-pocock-skills.md` (mesmo procedimento do passo 3) e rode `/setup-matt-pocock-skills`. Ela vai:
+   - Perguntar qual issue tracker você quer usar (GitHub, GitLab ou markdown local)
    - Perguntar quais labels você aplica às issues quando faz triagem (`/triage` usa labels)
-   - Perguntar onde você quer salvar quaisquer docs que criarmos
+   - Perguntar onde você quer salvar quaisquer docs de domínio que criarmos
 
-4. Pronto — você está com tudo certo para começar.
+6. Opcional: este repositório traz um hook de exemplo em [`.kiro/hooks/git-guardrails.kiro.hook`](./.kiro/hooks/git-guardrails.kiro.hook) que bloqueia comandos git destrutivos antes que eles executem. Para habilitá-lo no seu workspace, siga as instruções da skill [`git-guardrails`](./skills/misc/git-guardrails/SKILL.md).
 
 ## Por Que Estas Skills Existem
 
-Eu construí estas skills como uma forma de corrigir modos comuns de falha que vejo em Codex, Kiro e outros agentes de código modernos.
+Eu construí estas skills como uma forma de corrigir modos comuns de falha que vejo em agentes de código modernos.
 
 ### #1: O Agente Não Fez o Que Eu Queria
 
