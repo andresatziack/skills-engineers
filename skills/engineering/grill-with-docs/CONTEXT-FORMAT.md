@@ -1,16 +1,16 @@
-# CONTEXT.md Format
+# Formato do CONTEXT.md
 
-## Structure
+## Estrutura
 
 ```md
-# {Context Name}
+# {Nome do Contexto}
 
-{One or two sentence description of what this context is and why it exists.}
+{Descrição de uma ou duas frases do que este contexto é e por que existe.}
 
 ## Language
 
 **Order**:
-{A concise description of the term}
+{Uma descrição concisa do termo}
 _Avoid_: Purchase, transaction
 
 **Invoice**:
@@ -36,21 +36,21 @@ _Avoid_: Client, buyer, account
 - "account" was used to mean both **Customer** and **User** — resolved: these are distinct concepts.
 ```
 
-## Rules
+## Regras
 
-- **Be opinionated.** When multiple words exist for the same concept, pick the best one and list the others as aliases to avoid.
-- **Flag conflicts explicitly.** If a term is used ambiguously, call it out in "Flagged ambiguities" with a clear resolution.
-- **Keep definitions tight.** One sentence max. Define what it IS, not what it does.
-- **Show relationships.** Use bold term names and express cardinality where obvious.
-- **Only include terms specific to this project's context.** General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
-- **Group terms under subheadings** when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
-- **Write an example dialogue.** A conversation between a dev and a domain expert that demonstrates how the terms interact naturally and clarifies boundaries between related concepts.
+- **Seja opinativo.** Quando múltiplas palavras existem para o mesmo conceito, escolha a melhor e liste as outras como aliases a evitar.
+- **Sinalize conflitos explicitamente.** Se um termo é usado de forma ambígua, traga isso à tona em "Flagged ambiguities" com uma resolução clara.
+- **Mantenha as definições apertadas.** Uma frase no máximo. Defina o que ELE É, não o que ele faz.
+- **Mostre relações.** Use nomes de termos em negrito e expresse cardinalidade onde for óbvio.
+- **Inclua apenas termos específicos do contexto deste projeto.** Conceitos gerais de programação (timeouts, tipos de erro, padrões utilitários) não pertencem mesmo que o projeto os use extensivamente. Antes de adicionar um termo, pergunte: este é um conceito único deste contexto, ou um conceito geral de programação? Apenas o primeiro pertence.
+- **Agrupe termos sob subtítulos** quando clusters naturais emergem. Se todos os termos pertencem a uma única área coesa, uma lista plana está bem.
+- **Escreva um diálogo de exemplo.** Uma conversa entre uma pessoa dev e um domain expert que demonstra como os termos interagem naturalmente e clareia fronteiras entre conceitos relacionados.
 
-## Single vs multi-context repos
+## Repos de contexto único vs múltiplo
 
-**Single context (most repos):** One `CONTEXT.md` at the repo root.
+**Contexto único (a maioria dos repos):** Um `CONTEXT.md` na raiz do repo.
 
-**Multiple contexts:** A `CONTEXT-MAP.md` at the repo root lists the contexts, where they live, and how they relate to each other:
+**Múltiplos contextos:** Um `CONTEXT-MAP.md` na raiz do repo lista os contextos, onde vivem e como se relacionam:
 
 ```md
 # Context Map
@@ -68,10 +68,10 @@ _Avoid_: Client, buyer, account
 - **Ordering ↔ Billing**: Shared types for `CustomerId` and `Money`
 ```
 
-The skill infers which structure applies:
+A skill infere qual estrutura se aplica:
 
-- If `CONTEXT-MAP.md` exists, read it to find contexts
-- If only a root `CONTEXT.md` exists, single context
-- If neither exists, create a root `CONTEXT.md` lazily when the first term is resolved
+- Se `CONTEXT-MAP.md` existe, leia-o para encontrar contextos
+- Se apenas um `CONTEXT.md` raiz existe, contexto único
+- Se nenhum existe, crie um `CONTEXT.md` raiz preguiçosamente quando o primeiro termo for resolvido
 
-When multiple contexts exist, infer which one the current topic relates to. If unclear, ask.
+Quando múltiplos contextos existem, infira a qual deles o tópico atual se relaciona. Se não estiver claro, pergunte.

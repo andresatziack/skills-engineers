@@ -1,83 +1,83 @@
 ---
 name: to-issues
-description: Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
+description: Quebra um plano, spec ou PRD em issues independentemente pegáveis no issue tracker do projeto usando fatias verticais tracer-bullet. Use quando o usuário quer converter um plano em issues, criar issues de implementação ou quebrar trabalho em issues.
 ---
 
 # To Issues
 
-Break a plan into independently-grabbable issues using vertical slices (tracer bullets).
+Quebre um plano em issues independentemente pegáveis usando fatias verticais (tracer bullets).
 
-The issue tracker and triage label vocabulary should have been provided to you — run `/setup-matt-pocock-skills` if not.
+O issue tracker e o vocabulário de labels de triagem deveriam ter sido fornecidos a você — rode `/setup-matt-pocock-skills` se não.
 
-## Process
+## Processo
 
-### 1. Gather context
+### 1. Reúna contexto
 
-Work from whatever is already in the conversation context. If the user passes an issue reference (issue number, URL, or path) as an argument, fetch it from the issue tracker and read its full body and comments.
+Trabalhe com o que já está no contexto da conversa. Se o usuário passar uma referência de issue (número, URL ou path) como argumento, busque do issue tracker e leia o body completo e os comentários.
 
-### 2. Explore the codebase (optional)
+### 2. Explore a codebase (opcional)
 
-If you have not already explored the codebase, do so to understand the current state of the code. Issue titles and descriptions should use the project's domain glossary vocabulary, and respect ADRs in the area you're touching.
+Se você ainda não explorou a codebase, faça isso para entender o estado atual do código. Títulos e descrições de issues devem usar o vocabulário do glossário de domínio do projeto, e respeitar ADRs na área que você está mexendo.
 
-### 3. Draft vertical slices
+### 3. Rascunhe fatias verticais
 
-Break the plan into **tracer bullet** issues. Each issue is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
+Quebre o plano em issues **tracer bullet**. Cada issue é uma fatia vertical fina que corta TODAS as camadas de integração end-to-end, NÃO uma fatia horizontal de uma camada.
 
-Slices may be 'HITL' or 'AFK'. HITL slices require human interaction, such as an architectural decision or a design review. AFK slices can be implemented and merged without human interaction. Prefer AFK over HITL where possible.
+Fatias podem ser 'HITL' ou 'AFK'. Fatias HITL exigem interação humana, como uma decisão arquitetural ou uma revisão de design. Fatias AFK podem ser implementadas e mergeadas sem interação humana. Prefira AFK em vez de HITL onde possível.
 
 <vertical-slice-rules>
-- Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
-- A completed slice is demoable or verifiable on its own
-- Prefer many thin slices over few thick ones
+- Cada fatia entrega um caminho estreito mas COMPLETO por cada camada (schema, API, UI, testes)
+- Uma fatia completada é demoável ou verificável por si só
+- Prefira muitas fatias finas em vez de poucas fatias grossas
 </vertical-slice-rules>
 
-### 4. Quiz the user
+### 4. Quizze o usuário
 
-Present the proposed breakdown as a numbered list. For each slice, show:
+Apresente a quebra proposta como uma lista numerada. Para cada fatia, mostre:
 
-- **Title**: short descriptive name
+- **Title**: nome curto descritivo
 - **Type**: HITL / AFK
-- **Blocked by**: which other slices (if any) must complete first
-- **User stories covered**: which user stories this addresses (if the source material has them)
+- **Blocked by**: quais outras fatias (se houver) precisam completar antes
+- **User stories covered**: quais user stories isto endereça (se o material fonte tiver)
 
-Ask the user:
+Pergunte ao usuário:
 
-- Does the granularity feel right? (too coarse / too fine)
-- Are the dependency relationships correct?
-- Should any slices be merged or split further?
-- Are the correct slices marked as HITL and AFK?
+- A granularidade parece certa? (grossa demais / fina demais)
+- As relações de dependência estão corretas?
+- Alguma fatia deveria ser fundida ou quebrada mais?
+- As fatias certas estão marcadas como HITL e AFK?
 
-Iterate until the user approves the breakdown.
+Itere até o usuário aprovar a quebra.
 
-### 5. Publish the issues to the issue tracker
+### 5. Publique as issues no issue tracker
 
-For each approved slice, publish a new issue to the issue tracker. Use the issue body template below. These issues are considered ready for AFK agents, so publish them with the correct triage label unless instructed otherwise.
+Para cada fatia aprovada, publique uma nova issue no issue tracker. Use o template de body de issue abaixo. Estas issues são consideradas prontas para agentes AFK, então publique com a label de triagem correta a menos que instruído de outra forma.
 
-Publish issues in dependency order (blockers first) so you can reference real issue identifiers in the "Blocked by" field.
+Publique issues em ordem de dependência (bloqueadores primeiro) para que você possa referenciar identificadores reais de issue no campo "Blocked by".
 
 <issue-template>
 ## Parent
 
-A reference to the parent issue on the issue tracker (if the source was an existing issue, otherwise omit this section).
+Uma referência à issue pai no issue tracker (se a fonte foi uma issue existente, caso contrário omita esta seção).
 
 ## What to build
 
-A concise description of this vertical slice. Describe the end-to-end behavior, not layer-by-layer implementation.
+Uma descrição concisa desta fatia vertical. Descreva o comportamento end-to-end, não implementação camada-por-camada.
 
-Avoid specific file paths or code snippets — they go stale fast. Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it here and note briefly that it came from a prototype. Trim to the decision-rich parts — not a working demo, just the important bits.
+Evite paths específicos de arquivo ou snippets de código — eles ficam desatualizados rápido. Exceção: se um protótipo produziu um snippet que codifica uma decisão de forma mais precisa do que a prosa pode (state machine, reducer, schema, formato de tipo), inclua-o aqui e anote brevemente que veio de um protótipo. Apare para as partes ricas em decisão — não uma demo funcional, só os pedaços importantes.
 
 ## Acceptance criteria
 
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+- [ ] Critério 1
+- [ ] Critério 2
+- [ ] Critério 3
 
 ## Blocked by
 
-- A reference to the blocking ticket (if any)
+- Uma referência à issue bloqueadora (se houver)
 
-Or "None - can start immediately" if no blockers.
+Ou "None - can start immediately" se nenhum bloqueador.
 
 </issue-template>
 
-Do NOT close or modify any parent issue.
+NÃO feche ou modifique nenhuma issue pai.

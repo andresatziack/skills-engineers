@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "enabled": true,
+  "name": "git-guardrails",
+  "description": "Block destructive git operations (push, reset --hard, clean -f, branch -D, checkout ., restore .) before they execute.",
+  "when": {
+    "type": "preToolUse",
+    "toolTypes": ["shell"]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "bash .kiro/hooks/scripts/block-dangerous-git.sh",
+    "timeout": 10
+  }
+}

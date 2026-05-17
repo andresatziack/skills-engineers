@@ -1,15 +1,15 @@
-# Verify/Check Mode for `setup-matt-pocock-skills`
+# Modo Verify/Check para `setup-matt-pocock-skills`
 
-This project will not add a dedicated verify/check mode (or a separate verify skill) for `setup-matt-pocock-skills`.
+Este projeto não vai adicionar um modo dedicado de verify/check (nem uma skill separada de verificação) para `setup-matt-pocock-skills`.
 
-## Why this is out of scope
+## Por que isso está fora do escopo
 
-A second skill — or a `--verify` flag — for checking whether `docs/agents/*.md` artifacts still match the seed-template schema would duplicate work the existing setup skill already handles in conversation.
+Uma segunda skill — ou uma flag `--verify` — para checar se os artefatos `docs/agents/*.md` ainda batem com o schema dos templates-semente duplicaria trabalho que a skill de setup existente já cobre em conversa.
 
-The intended workflow is: **run `/setup-matt-pocock-skills` and tell it to verify your current setup.** The skill is prompt-driven, so the maintainer can scope it to a verification pass ("don't rewrite anything, just check my existing files against the current seed templates and report drift") without needing a separate code path. Adding a flag or a sibling skill would split the surface area of a feature that's already expressible through the natural-language entry point.
+O fluxo pretendido é: **execute `/setup-matt-pocock-skills` e diga a ela para verificar seu setup atual.** A skill é orientada a prompt, então o mantenedor pode delimitá-la a um passo de verificação ("não reescreva nada, só confira meus arquivos atuais contra os templates-semente atuais e relate desvios") sem precisar de um caminho de código separado. Adicionar uma flag ou uma skill irmã dividiria a superfície de uma funcionalidade que já é expressável pelo ponto de entrada em linguagem natural.
 
-Keeping configuration management to a single skill also avoids the maintenance cost of two skills drifting from each other when seed templates evolve.
+Manter a gestão de configuração em uma única skill também evita o custo de manutenção de duas skills divergindo entre si quando os templates-semente evoluírem.
 
-## Prior requests
+## Pedidos anteriores
 
 - #106 — Feature request: verify/check mode for setup-matt-pocock-skills

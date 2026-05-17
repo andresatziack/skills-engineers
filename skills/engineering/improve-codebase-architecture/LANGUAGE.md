@@ -1,53 +1,53 @@
 # Language
 
-Shared vocabulary for every suggestion this skill makes. Use these terms exactly — don't substitute "component," "service," "API," or "boundary." Consistent language is the whole point.
+Vocabulário compartilhado para cada sugestão que esta skill faz. Use estes termos exatamente — não substitua por "component", "service", "API" ou "boundary". Linguagem consistente é o ponto inteiro.
 
-## Terms
+## Termos
 
 **Module**
-Anything with an interface and an implementation. Deliberately scale-agnostic — applies equally to a function, class, package, or tier-spanning slice.
+Qualquer coisa com uma interface e uma implementação. Deliberadamente agnóstico de escala — aplica-se igualmente a uma função, classe, package ou fatia que cruza camadas.
 _Avoid_: unit, component, service.
 
 **Interface**
-Everything a caller must know to use the module correctly. Includes the type signature, but also invariants, ordering constraints, error modes, required configuration, and performance characteristics.
-_Avoid_: API, signature (too narrow — those refer only to the type-level surface).
+Tudo que um chamador precisa saber para usar o módulo corretamente. Inclui a assinatura de tipo, mas também invariantes, restrições de ordenação, modos de erro, configuração necessária e características de performance.
+_Avoid_: API, signature (estreitos demais — esses se referem apenas à superfície a nível de tipo).
 
 **Implementation**
-What's inside a module — its body of code. Distinct from **Adapter**: a thing can be a small adapter with a large implementation (a Postgres repo) or a large adapter with a small implementation (an in-memory fake). Reach for "adapter" when the seam is the topic; "implementation" otherwise.
+O que está dentro de um módulo — seu corpo de código. Distinto de **Adapter**: uma coisa pode ser um adapter pequeno com uma implementation grande (um repo Postgres) ou um adapter grande com uma implementation pequena (um fake em memória). Use "adapter" quando o seam é o tópico; "implementation" caso contrário.
 
 **Depth**
-Leverage at the interface — the amount of behaviour a caller (or test) can exercise per unit of interface they have to learn. A module is **deep** when a large amount of behaviour sits behind a small interface. A module is **shallow** when the interface is nearly as complex as the implementation.
+Alavancagem na interface — a quantidade de comportamento que um chamador (ou teste) consegue exercitar por unidade de interface que precisa aprender. Um módulo é **deep** quando uma grande quantidade de comportamento fica atrás de uma interface pequena. Um módulo é **shallow** quando a interface é quase tão complexa quanto a implementação.
 
-**Seam** _(from Michael Feathers)_
-A place where you can alter behaviour without editing in that place. The *location* at which a module's interface lives. Choosing where to put the seam is its own design decision, distinct from what goes behind it.
-_Avoid_: boundary (overloaded with DDD's bounded context).
+**Seam** _(de Michael Feathers)_
+Um lugar onde você pode alterar o comportamento sem editar naquele lugar. A *localização* na qual a interface de um módulo vive. Escolher onde colocar o seam é uma decisão de design por si só, distinta do que vai atrás dele.
+_Avoid_: boundary (sobrecarregado com bounded context do DDD).
 
 **Adapter**
-A concrete thing that satisfies an interface at a seam. Describes *role* (what slot it fills), not substance (what's inside).
+Uma coisa concreta que satisfaz uma interface num seam. Descreve *papel* (que slot ele preenche), não substância (o que tem dentro).
 
 **Leverage**
-What callers get from depth. More capability per unit of interface they have to learn. One implementation pays back across N call sites and M tests.
+O que os chamadores ganham com profundidade. Mais capacidade por unidade de interface que precisam aprender. Uma implementação paga de volta em N call sites e M testes.
 
 **Locality**
-What maintainers get from depth. Change, bugs, knowledge, and verification concentrate at one place rather than spreading across callers. Fix once, fixed everywhere.
+O que mantenedores ganham com profundidade. Mudança, bugs, conhecimento e verificação se concentram num lugar em vez de se espalharem pelos chamadores. Conserta uma vez, consertado em todo lugar.
 
-## Principles
+## Princípios
 
-- **Depth is a property of the interface, not the implementation.** A deep module can be internally composed of small, mockable, swappable parts — they just aren't part of the interface. A module can have **internal seams** (private to its implementation, used by its own tests) as well as the **external seam** at its interface.
-- **The deletion test.** Imagine deleting the module. If complexity vanishes, the module wasn't hiding anything (it was a pass-through). If complexity reappears across N callers, the module was earning its keep.
-- **The interface is the test surface.** Callers and tests cross the same seam. If you want to test *past* the interface, the module is probably the wrong shape.
-- **One adapter means a hypothetical seam. Two adapters means a real one.** Don't introduce a seam unless something actually varies across it.
+- **Profundidade é uma propriedade da interface, não da implementação.** Um módulo profundo pode ser internamente composto de partes pequenas, mockáveis e trocáveis — elas só não fazem parte da interface. Um módulo pode ter **seams internos** (privados à sua implementação, usados pelos próprios testes dele) bem como o **seam externo** na sua interface.
+- **O teste de deleção.** Imagine deletar o módulo. Se a complexidade some, o módulo não estava escondendo nada (era um pass-through). Se a complexidade reaparece em N chamadores, o módulo estava ganhando seu sustento.
+- **A interface é a superfície de teste.** Chamadores e testes cruzam o mesmo seam. Se você quer testar *além* da interface, o módulo provavelmente está com a forma errada.
+- **Um adapter significa um seam hipotético. Dois adapters significam um real.** Não introduza um seam a menos que algo de fato varie por ele.
 
-## Relationships
+## Relações
 
-- A **Module** has exactly one **Interface** (the surface it presents to callers and tests).
-- **Depth** is a property of a **Module**, measured against its **Interface**.
-- A **Seam** is where a **Module**'s **Interface** lives.
-- An **Adapter** sits at a **Seam** and satisfies the **Interface**.
-- **Depth** produces **Leverage** for callers and **Locality** for maintainers.
+- Um **Module** tem exatamente uma **Interface** (a superfície que apresenta a chamadores e testes).
+- **Depth** é uma propriedade de um **Module**, medida contra sua **Interface**.
+- Um **Seam** é onde a **Interface** de um **Module** vive.
+- Um **Adapter** fica num **Seam** e satisfaz a **Interface**.
+- **Depth** produz **Leverage** para chamadores e **Locality** para mantenedores.
 
-## Rejected framings
+## Enquadramentos rejeitados
 
-- **Depth as ratio of implementation-lines to interface-lines** (Ousterhout): rewards padding the implementation. We use depth-as-leverage instead.
-- **"Interface" as the TypeScript `interface` keyword or a class's public methods**: too narrow — interface here includes every fact a caller must know.
-- **"Boundary"**: overloaded with DDD's bounded context. Say **seam** or **interface**.
+- **Profundidade como razão de linhas de implementação para linhas de interface** (Ousterhout): recompensa enchimento da implementação. Usamos profundidade-como-alavancagem em vez disso.
+- **"Interface" como a palavra-chave `interface` do TypeScript ou os métodos públicos de uma classe**: estreito demais — interface aqui inclui cada fato que um chamador precisa saber.
+- **"Boundary"**: sobrecarregado com bounded context do DDD. Diga **seam** ou **interface**.

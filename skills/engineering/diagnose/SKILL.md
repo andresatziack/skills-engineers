@@ -1,117 +1,117 @@
 ---
 name: diagnose
-description: Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce → minimise → hypothesise → instrument → fix → regression-test. Use when user says "diagnose this" / "debug this", reports a bug, says something is broken/throwing/failing, or describes a performance regression.
+description: Loop disciplinado de diagnóstico para bugs difíceis e regressões de performance. Reproduzir → minimizar → hipotetizar → instrumentar → corrigir → teste de regressão. Use quando o usuário disser "diagnostique isso" / "debug isso", reportar um bug, disser que algo está quebrado/lançando exceção/falhando, ou descrever uma regressão de performance.
 ---
 
 # Diagnose
 
-A discipline for hard bugs. Skip phases only when explicitly justified.
+Uma disciplina para bugs difíceis. Pule fases somente quando justificado explicitamente.
 
-When exploring the codebase, use the project's domain glossary to get a clear mental model of the relevant modules, and check ADRs in the area you're touching.
+Ao explorar a codebase, use o glossário de domínio do projeto para ter um modelo mental claro dos módulos relevantes, e cheque ADRs na área que você está mexendo.
 
-## Phase 1 — Build a feedback loop
+## Fase 1 — Construa um loop de feedback
 
-**This is the skill.** Everything else is mechanical. If you have a fast, deterministic, agent-runnable pass/fail signal for the bug, you will find the cause — bisection, hypothesis-testing, and instrumentation all just consume that signal. If you don't have one, no amount of staring at code will save you.
+**Esta é a skill.** Todo o resto é mecânico. Se você tem um sinal de pass/fail rápido, determinístico e executável por agente para o bug, você vai encontrar a causa — bisseção, teste de hipóteses e instrumentação só consomem esse sinal. Se você não tem um, nenhuma quantidade de olhar para o código vai te salvar.
 
-Spend disproportionate effort here. **Be aggressive. Be creative. Refuse to give up.**
+Gaste esforço desproporcional aqui. **Seja agressivo. Seja criativo. Recuse-se a desistir.**
 
-### Ways to construct one — try them in roughly this order
+### Maneiras de construir um — tente nesta ordem aproximada
 
-1. **Failing test** at whatever seam reaches the bug — unit, integration, e2e.
-2. **Curl / HTTP script** against a running dev server.
-3. **CLI invocation** with a fixture input, diffing stdout against a known-good snapshot.
-4. **Headless browser script** (Playwright / Puppeteer) — drives the UI, asserts on DOM/console/network.
-5. **Replay a captured trace.** Save a real network request / payload / event log to disk; replay it through the code path in isolation.
-6. **Throwaway harness.** Spin up a minimal subset of the system (one service, mocked deps) that exercises the bug code path with a single function call.
-7. **Property / fuzz loop.** If the bug is "sometimes wrong output", run 1000 random inputs and look for the failure mode.
-8. **Bisection harness.** If the bug appeared between two known states (commit, dataset, version), automate "boot at state X, check, repeat" so you can `git bisect run` it.
-9. **Differential loop.** Run the same input through old-version vs new-version (or two configs) and diff outputs.
-10. **HITL bash script.** Last resort. If a human must click, drive _them_ with `scripts/hitl-loop.template.sh` so the loop is still structured. Captured output feeds back to you.
+1. **Teste falhando** em qualquer seam que alcance o bug — unit, integration, e2e.
+2. **Script curl / HTTP** contra um dev server rodando.
+3. **Invocação de CLI** com uma input de fixture, fazendo diff do stdout contra um snapshot conhecido.
+4. **Script de browser headless** (Playwright / Puppeteer) — dirige a UI, asserta sobre DOM/console/network.
+5. **Replay de um trace capturado.** Salve um request de rede / payload / event log real em disco; faça replay dele pelo code path em isolamento.
+6. **Harness descartável.** Suba um subconjunto mínimo do sistema (um service, deps mockadas) que exercite o code path do bug com uma única chamada de função.
+7. **Loop de property / fuzz.** Se o bug é "às vezes saída errada", rode 1000 inputs aleatórios e procure o modo de falha.
+8. **Harness de bisseção.** Se o bug apareceu entre dois estados conhecidos (commit, dataset, versão), automatize "boote no estado X, cheque, repita" para que você possa rodar `git bisect run`.
+9. **Loop diferencial.** Rode o mesmo input pela versão antiga vs versão nova (ou duas configs) e faça diff dos outputs.
+10. **Script bash HITL.** Último recurso. Se um humano precisa clicar, dirija _ele_ com `scripts/hitl-loop.template.sh` para que o loop ainda seja estruturado. A saída capturada volta para você.
 
-Build the right feedback loop, and the bug is 90% fixed.
+Construa o loop de feedback certo, e o bug está 90% resolvido.
 
-### Iterate on the loop itself
+### Itere sobre o próprio loop
 
-Treat the loop as a product. Once you have _a_ loop, ask:
+Trate o loop como um produto. Uma vez que você tem _um_ loop, pergunte:
 
-- Can I make it faster? (Cache setup, skip unrelated init, narrow the test scope.)
-- Can I make the signal sharper? (Assert on the specific symptom, not "didn't crash".)
-- Can I make it more deterministic? (Pin time, seed RNG, isolate filesystem, freeze network.)
+- Posso torná-lo mais rápido? (Cachear setup, pular init não relacionada, estreitar o escopo do teste.)
+- Posso tornar o sinal mais nítido? (Asserte sobre o sintoma específico, não "não crashou".)
+- Posso torná-lo mais determinístico? (Fixar tempo, semear RNG, isolar filesystem, congelar rede.)
 
-A 30-second flaky loop is barely better than no loop. A 2-second deterministic loop is a debugging superpower.
+Um loop flaky de 30 segundos é mal melhor que nenhum loop. Um loop determinístico de 2 segundos é um superpoder de debug.
 
-### Non-deterministic bugs
+### Bugs não-determinísticos
 
-The goal is not a clean repro but a **higher reproduction rate**. Loop the trigger 100×, parallelise, add stress, narrow timing windows, inject sleeps. A 50%-flake bug is debuggable; 1% is not — keep raising the rate until it's debuggable.
+O objetivo não é um repro limpo, mas uma **taxa de reprodução maior**. Faça loop do trigger 100×, paralelize, adicione stress, estreite janelas de timing, injete sleeps. Um bug com 50% de flake é debugável; 1% não é — continue elevando a taxa até ficar debugável.
 
-### When you genuinely cannot build a loop
+### Quando você genuinamente não consegue construir um loop
 
-Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Do **not** proceed to hypothesise without a loop.
+Pare e diga isso explicitamente. Liste o que você tentou. Peça ao usuário: (a) acesso a qualquer ambiente que reproduza, (b) um artefato capturado (arquivo HAR, dump de log, core dump, gravação de tela com timestamps), ou (c) permissão para adicionar instrumentação temporária em produção. **Não** prossiga para hipotetizar sem um loop.
 
-Do not proceed to Phase 2 until you have a loop you believe in.
+Não prossiga para a Fase 2 até que você tenha um loop em que acredite.
 
-## Phase 2 — Reproduce
+## Fase 2 — Reproduza
 
-Run the loop. Watch the bug appear.
+Rode o loop. Veja o bug aparecer.
 
-Confirm:
+Confirme:
 
-- [ ] The loop produces the failure mode the **user** described — not a different failure that happens to be nearby. Wrong bug = wrong fix.
-- [ ] The failure is reproducible across multiple runs (or, for non-deterministic bugs, reproducible at a high enough rate to debug against).
-- [ ] You have captured the exact symptom (error message, wrong output, slow timing) so later phases can verify the fix actually addresses it.
+- [ ] O loop produz o modo de falha que o **usuário** descreveu — não uma falha diferente que acontece de estar por perto. Bug errado = correção errada.
+- [ ] A falha é reprodutível em múltiplas execuções (ou, para bugs não-determinísticos, reprodutível a uma taxa alta o bastante para debugar).
+- [ ] Você capturou o sintoma exato (mensagem de erro, saída errada, timing lento) para que fases posteriores possam verificar que a correção realmente o endereça.
 
-Do not proceed until you reproduce the bug.
+Não prossiga até reproduzir o bug.
 
-## Phase 3 — Hypothesise
+## Fase 3 — Hipotetize
 
-Generate **3–5 ranked hypotheses** before testing any of them. Single-hypothesis generation anchors on the first plausible idea.
+Gere **3 a 5 hipóteses ranqueadas** antes de testar qualquer uma delas. Geração de hipótese única ancora na primeira ideia plausível.
 
-Each hypothesis must be **falsifiable**: state the prediction it makes.
+Cada hipótese deve ser **falseável**: declare a previsão que ela faz.
 
-> Format: "If <X> is the cause, then <changing Y> will make the bug disappear / <changing Z> will make it worse."
+> Formato: "Se <X> é a causa, então <mudar Y> vai fazer o bug desaparecer / <mudar Z> vai piorar."
 
-If you cannot state the prediction, the hypothesis is a vibe — discard or sharpen it.
+Se você não consegue declarar a previsão, a hipótese é um vibe — descarte ou afie-a.
 
-**Show the ranked list to the user before testing.** They often have domain knowledge that re-ranks instantly ("we just deployed a change to #3"), or know hypotheses they've already ruled out. Cheap checkpoint, big time saver. Don't block on it — proceed with your ranking if the user is AFK.
+**Mostre a lista ranqueada para o usuário antes de testar.** Frequentemente eles têm conhecimento de domínio que reranqueia instantaneamente ("acabamos de fazer deploy de uma mudança em #3"), ou conhecem hipóteses que já descartaram. Checkpoint barato, grande economia de tempo. Não bloqueie nele — prossiga com seu ranking se o usuário estiver AFK.
 
-## Phase 4 — Instrument
+## Fase 4 — Instrumente
 
-Each probe must map to a specific prediction from Phase 3. **Change one variable at a time.**
+Cada probe deve mapear para uma previsão específica da Fase 3. **Mude uma variável por vez.**
 
-Tool preference:
+Preferência de ferramentas:
 
-1. **Debugger / REPL inspection** if the env supports it. One breakpoint beats ten logs.
-2. **Targeted logs** at the boundaries that distinguish hypotheses.
-3. Never "log everything and grep".
+1. **Inspeção via debugger / REPL** se o ambiente suportar. Um breakpoint vence dez logs.
+2. **Logs direcionados** nas fronteiras que distinguem hipóteses.
+3. Nunca "logue tudo e dê grep".
 
-**Tag every debug log** with a unique prefix, e.g. `[DEBUG-a4f2]`. Cleanup at the end becomes a single grep. Untagged logs survive; tagged logs die.
+**Marque cada log de debug** com um prefixo único, ex.: `[DEBUG-a4f2]`. Cleanup no final vira um único grep. Logs sem marca sobrevivem; logs marcados morrem.
 
-**Perf branch.** For performance regressions, logs are usually wrong. Instead: establish a baseline measurement (timing harness, `performance.now()`, profiler, query plan), then bisect. Measure first, fix second.
+**Branch de perf.** Para regressões de performance, logs geralmente estão errados. Em vez disso: estabeleça uma medição baseline (timing harness, `performance.now()`, profiler, query plan), depois bisseccione. Meça primeiro, corrija depois.
 
-## Phase 5 — Fix + regression test
+## Fase 5 — Correção + teste de regressão
 
-Write the regression test **before the fix** — but only if there is a **correct seam** for it.
+Escreva o teste de regressão **antes da correção** — mas só se houver um **seam correto** para ele.
 
-A correct seam is one where the test exercises the **real bug pattern** as it occurs at the call site. If the only available seam is too shallow (single-caller test when the bug needs multiple callers, unit test that can't replicate the chain that triggered the bug), a regression test there gives false confidence.
+Um seam correto é aquele em que o teste exercita o **padrão real do bug** como ele ocorre no call site. Se o único seam disponível é raso demais (teste com chamador único quando o bug precisa de múltiplos chamadores, unit test que não consegue replicar a cadeia que disparou o bug), um teste de regressão ali dá falsa confiança.
 
-**If no correct seam exists, that itself is the finding.** Note it. The codebase architecture is preventing the bug from being locked down. Flag this for the next phase.
+**Se nenhum seam correto existe, isso em si é o achado.** Anote. A arquitetura da codebase está impedindo o bug de ser travado. Sinalize isso para a próxima fase.
 
-If a correct seam exists:
+Se um seam correto existe:
 
-1. Turn the minimised repro into a failing test at that seam.
-2. Watch it fail.
-3. Apply the fix.
-4. Watch it pass.
-5. Re-run the Phase 1 feedback loop against the original (un-minimised) scenario.
+1. Transforme o repro minimizado em um teste falhando naquele seam.
+2. Veja-o falhar.
+3. Aplique a correção.
+4. Veja-o passar.
+5. Re-rode o loop de feedback da Fase 1 contra o cenário original (não-minimizado).
 
-## Phase 6 — Cleanup + post-mortem
+## Fase 6 — Cleanup + post-mortem
 
-Required before declaring done:
+Obrigatório antes de declarar feito:
 
-- [ ] Original repro no longer reproduces (re-run the Phase 1 loop)
-- [ ] Regression test passes (or absence of seam is documented)
-- [ ] All `[DEBUG-...]` instrumentation removed (`grep` the prefix)
-- [ ] Throwaway prototypes deleted (or moved to a clearly-marked debug location)
-- [ ] The hypothesis that turned out correct is stated in the commit / PR message — so the next debugger learns
+- [ ] Repro original não reproduz mais (re-rode o loop da Fase 1)
+- [ ] Teste de regressão passa (ou ausência de seam está documentada)
+- [ ] Toda instrumentação `[DEBUG-...]` removida (`grep` o prefixo)
+- [ ] Protótipos descartáveis deletados (ou movidos para uma localização claramente marcada como debug)
+- [ ] A hipótese que se mostrou correta está declarada na mensagem de commit / PR — para que o próximo debugger aprenda
 
-**Then ask: what would have prevented this bug?** If the answer involves architectural change (no good test seam, tangled callers, hidden coupling) hand off to the `/improve-codebase-architecture` skill with the specifics. Make the recommendation **after** the fix is in, not before — you have more information now than when you started.
+**Então pergunte: o que teria prevenido este bug?** Se a resposta envolve mudança arquitetural (sem bom seam de teste, chamadores emaranhados, acoplamento escondido), passe para a skill `/improve-codebase-architecture` com as especificidades. Faça a recomendação **depois** que a correção estiver no lugar, não antes — você tem mais informação agora do que tinha quando começou.

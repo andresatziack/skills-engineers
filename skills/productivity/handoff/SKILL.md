@@ -1,13 +1,13 @@
 ---
 name: handoff
-description: Compact the current conversation into a handoff document for another agent to pick up.
-argument-hint: "What will the next session be used for?"
+description: Compacta a conversa atual em um documento de handoff para que outro agente possa pegar o trabalho.
+argument-hint: "Para que a próxima sessão vai ser usada?"
 ---
 
-Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save it to a path produced by `mktemp -t handoff-XXXXXX.md` (read the file before you write to it).
+Escreva um documento de handoff resumindo a conversa atual para que um agente fresco possa continuar o trabalho. Salve-o num path produzido por `mktemp -t handoff-XXXXXX.md` (leia o arquivo antes de escrever nele).
 
-Suggest the skills to be used, if any, by the next session.
+Sugira as skills a serem usadas, se houver, pela próxima sessão.
 
-Do not duplicate content already captured in other artifacts (PRDs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.
+Não duplique conteúdo já capturado em outros artefatos (PRDs, planos, ADRs, issues, commits, diffs). Referencie-os por path ou URL em vez disso.
 
-If the user passed arguments, treat them as a description of what the next session will focus on and tailor the doc accordingly.
+Se o usuário passou argumentos, trate-os como uma descrição do que a próxima sessão vai focar e ajuste o doc adequadamente.

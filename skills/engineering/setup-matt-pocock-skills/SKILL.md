@@ -1,121 +1,124 @@
 ---
 name: setup-matt-pocock-skills
-description: Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
+description: Configura steering files do Kiro sob `.kiro/steering/` (um índice `agent-skills-config.md` mais `issue-tracker.md`, `triage-labels.md` e `domain.md`) para que as skills de engenharia conheçam o issue tracker deste repo (GitHub ou markdown local), o vocabulário de labels de triagem e o layout dos docs de domínio. Rode antes do primeiro uso de `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture` ou `zoom-out` — ou se essas skills parecem estar faltando contexto sobre o issue tracker, labels de triagem ou docs de domínio.
 disable-model-invocation: true
 ---
 
 # Setup Matt Pocock's Skills
 
-Scaffold the per-repo configuration that the engineering skills assume:
+Faça o scaffold da configuração por repositório que as skills de engenharia assumem:
 
-- **Issue tracker** — where issues live (GitHub by default; local markdown is also supported out of the box)
-- **Triage labels** — the strings used for the five canonical triage roles
-- **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
+- **Issue tracker** — onde issues vivem (GitHub por padrão; markdown local também é suportado out of the box)
+- **Triage labels** — as strings usadas para os cinco papéis canônicos de triagem
+- **Domain docs** — onde `CONTEXT.md` e ADRs vivem, e as regras de consumo para lê-los
 
-This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
+Esta é uma skill dirigida por prompt, não um script determinístico. Explore, apresente o que encontrou, confirme com o usuário e depois escreva.
 
-## Process
+## Processo
 
 ### 1. Explore
 
-Look at the current repo to understand its starting state. Read whatever exists; don't assume:
+Olhe o repo atual para entender seu estado inicial. Leia o que existir; não assuma:
 
-- `git remote -v` and `.git/config` — is this a GitHub repo? Which one?
-- `AGENTS.md` and `CLAUDE.md` at the repo root — does either exist? Is there already an `## Agent skills` section in either?
-- `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
-- `docs/adr/` and any `src/*/docs/adr/` directories
-- `docs/agents/` — does this skill's prior output already exist?
-- `.scratch/` — sign that a local-markdown issue tracker convention is already in use
+- `git remote -v` e `.git/config` — este é um repo do GitHub? Qual deles?
+- Procure por steering files existentes sob `.kiro/steering/` — especificamente `agent-skills-config.md`, ou qualquer arquivo contendo um bloco `## Agent skills`. Anote também se `.kiro/` em si existe.
+- `CONTEXT.md` e `CONTEXT-MAP.md` na raiz do repo
+- `docs/adr/` e quaisquer diretórios `src/*/docs/adr/`
+- Olhe `.kiro/steering/` em busca de qualquer saída anterior desta skill (ex.: `issue-tracker.md`, `triage-labels.md`, `domain.md`).
+- `.scratch/` — sinal de que uma convenção de issue tracker em markdown local já está em uso
 
-### 2. Present findings and ask
+### 2. Apresente os achados e pergunte
 
-Summarise what's present and what's missing. Then walk the user through the three decisions **one at a time** — present a section, get the user's answer, then move to the next. Don't dump all three at once.
+Resuma o que está presente e o que está faltando. Depois caminhe com o usuário pelas três decisões **uma de cada vez** — apresente uma seção, obtenha a resposta do usuário, então mova para a próxima. Não despeje as três de uma vez.
 
-Assume the user does not know what these terms mean. Each section starts with a short explainer (what it is, why these skills need it, what changes if they pick differently). Then show the choices and the default.
+Assuma que o usuário não sabe o que esses termos significam. Cada seção começa com uma explicação curta (o que é, por que estas skills precisam dele, o que muda se ele escolher diferente). Depois mostre as opções e o default.
 
-**Section A — Issue tracker.**
+**Seção A — Issue tracker.**
 
-> Explainer: The "issue tracker" is where issues live for this repo. Skills like `to-issues`, `triage`, `to-prd`, and `qa` read from and write to it — they need to know whether to call `gh issue create`, write a markdown file under `.scratch/`, or follow some other workflow you describe. Pick the place you actually track work for this repo.
+> Explicação: O "issue tracker" é onde issues vivem para este repo. Skills como `to-issues`, `triage`, `to-prd` e `qa` lêem dele e escrevem nele — precisam saber se devem chamar `gh issue create`, escrever um arquivo markdown sob `.scratch/` ou seguir algum outro fluxo que você descreva. Escolha o lugar onde você de fato acompanha trabalho para este repo.
 
-Default posture: these skills were designed for GitHub. If a `git remote` points at GitHub, propose that. If a `git remote` points at GitLab (`gitlab.com` or a self-hosted host), propose GitLab. Otherwise (or if the user prefers), offer:
+Postura default: estas skills foram desenhadas para o GitHub. Se um `git remote` aponta para o GitHub, proponha isso. Se um `git remote` aponta para o GitLab (`gitlab.com` ou um host self-hosted), proponha o GitLab. Caso contrário (ou se o usuário preferir), ofereça:
 
-- **GitHub** — issues live in the repo's GitHub Issues (uses the `gh` CLI)
-- **GitLab** — issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
-- **Local markdown** — issues live as files under `.scratch/<feature>/` in this repo (good for solo projects or repos without a remote)
-- **Other** (Jira, Linear, etc.) — ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
+- **GitHub** — issues vivem no GitHub Issues do repo (usa o CLI `gh`)
+- **GitLab** — issues vivem no GitLab Issues do repo (usa o CLI [`glab`](https://gitlab.com/gitlab-org/cli))
+- **Markdown local** — issues vivem como arquivos sob `.scratch/<feature>/` neste repo (bom para projetos solo ou repos sem remote)
+- **Outro** (Jira, Linear, etc.) — peça ao usuário para descrever o fluxo em um parágrafo; a skill vai gravar como prosa livre
 
-**Section B — Triage label vocabulary.**
+**Seção B — Vocabulário de labels de triagem.**
 
-> Explainer: When the `triage` skill processes an incoming issue, it moves it through a state machine — needs evaluation, waiting on reporter, ready for an AFK agent to pick up, ready for a human, or won't fix. To do that, it needs to apply labels (or the equivalent in your issue tracker) that match strings *you've actually configured*. If your repo already uses different label names (e.g. `bug:triage` instead of `needs-triage`), map them here so the skill applies the right ones instead of creating duplicates.
+> Explicação: Quando a skill `triage` processa uma issue de entrada, ela a move por uma máquina de estados — precisa de avaliação, esperando o reporter, pronto para um agente AFK pegar, pronto para um humano, ou wontfix. Para fazer isso, ela precisa aplicar labels (ou o equivalente no seu issue tracker) que combinem com strings *que você de fato configurou*. Se seu repo já usa nomes de labels diferentes (ex.: `bug:triage` em vez de `needs-triage`), mapeie-os aqui para que a skill aplique os corretos em vez de criar duplicatas.
 
-The five canonical roles:
+Os cinco papéis canônicos:
 
-- `needs-triage` — maintainer needs to evaluate
-- `needs-info` — waiting on reporter
-- `ready-for-agent` — fully specified, AFK-ready (an agent can pick it up with no human context)
-- `ready-for-human` — needs human implementation
-- `wontfix` — will not be actioned
+- `needs-triage` — mantenedor precisa avaliar
+- `needs-info` — esperando o reporter
+- `ready-for-agent` — totalmente especificada, pronta para AFK (um agente pode pegar sem contexto humano)
+- `ready-for-human` — precisa de implementação humana
+- `wontfix` — não vai ser feito
 
-Default: each role's string equals its name. Ask the user if they want to override any. If their issue tracker has no existing labels, the defaults are fine.
+Default: a string de cada papel é igual ao seu nome. Pergunte ao usuário se quer sobrescrever algum. Se o issue tracker dele não tem labels existentes, os defaults estão bem.
 
-**Section C — Domain docs.**
+**Seção C — Domain docs.**
 
-> Explainer: Some skills (`improve-codebase-architecture`, `diagnose`, `tdd`) read a `CONTEXT.md` file to learn the project's domain language, and `docs/adr/` for past architectural decisions. They need to know whether the repo has one global context or multiple (e.g. a monorepo with separate frontend/backend contexts) so they look in the right place.
+> Explicação: Algumas skills (`improve-codebase-architecture`, `diagnose`, `tdd`) lêem um arquivo `CONTEXT.md` para aprender a linguagem de domínio do projeto, e `docs/adr/` para decisões arquiteturais passadas. Elas precisam saber se o repo tem um contexto único global ou múltiplos (ex.: um monorepo com contextos separados de frontend/backend) para procurarem no lugar certo.
 
-Confirm the layout:
+Confirme o layout:
 
-- **Single-context** — one `CONTEXT.md` + `docs/adr/` at the repo root. Most repos are this.
-- **Multi-context** — `CONTEXT-MAP.md` at the root pointing to per-context `CONTEXT.md` files (typically a monorepo).
+- **Single-context** — um `CONTEXT.md` + `docs/adr/` na raiz do repo. A maioria dos repos é assim.
+- **Multi-context** — `CONTEXT-MAP.md` na raiz apontando para arquivos `CONTEXT.md` por contexto (tipicamente um monorepo).
 
-### 3. Confirm and edit
+### 3. Confirme e edite
 
-Show the user a draft of:
+Mostre ao usuário um rascunho de:
 
-- The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
-- The contents of `docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, `docs/agents/domain.md`
+- O steering file `agent-skills-config.md` (que o Kiro vai carregar em cada interação).
+- Os conteúdos de `.kiro/steering/issue-tracker.md`, `.kiro/steering/triage-labels.md`, `.kiro/steering/domain.md`.
 
-Let them edit before writing.
+Deixe-os editar antes de escrever.
 
-### 4. Write
+### 4. Escreva
 
-**Pick the file to edit:**
+Escreva quatro arquivos em `.kiro/steering/` (criando o diretório se ausente):
 
-- If `CLAUDE.md` exists, edit it.
-- Else if `AGENTS.md` exists, edit it.
-- If neither exists, ask the user which one to create — don't pick for them.
+- `agent-skills-config.md` — o arquivo de índice com front-matter `inclusion: always`, contendo os três resumos de uma linha mostrados abaixo.
+- `issue-tracker.md` — a partir do template seed correspondente (veja abaixo). O template já vem com `inclusion: manual` no topo; preserve esse front-matter ao copiar.
+- `triage-labels.md` — a partir de [triage-labels.md](./triage-labels.md). O template já vem com `inclusion: manual`.
+- `domain.md` — a partir de [domain.md](./domain.md). O template já vem com `inclusion: manual`.
 
-Never create `AGENTS.md` when `CLAUDE.md` already exists (or vice versa) — always edit the one that's already there.
+Se `.kiro/steering/agent-skills-config.md` já existe, atualize-o no lugar (substituindo o bloco `## Agent skills`) em vez de sobrescrever o conteúdo ao redor. Não sobrescreva edições do usuário em outras seções desse arquivo.
 
-If an `## Agent skills` block already exists in the chosen file, update its contents in-place rather than appending a duplicate. Don't overwrite user edits to the surrounding sections.
-
-The block:
+O bloco:
 
 ```markdown
+---
+inclusion: always
+---
+
 ## Agent skills
 
 ### Issue tracker
 
-[one-line summary of where issues are tracked]. See `docs/agents/issue-tracker.md`.
+[resumo de uma linha de onde issues são acompanhadas]. Veja `.kiro/steering/issue-tracker.md`.
 
 ### Triage labels
 
-[one-line summary of the label vocabulary]. See `docs/agents/triage-labels.md`.
+[resumo de uma linha do vocabulário de labels]. Veja `.kiro/steering/triage-labels.md`.
 
 ### Domain docs
 
-[one-line summary of layout — "single-context" or "multi-context"]. See `docs/agents/domain.md`.
+[resumo de uma linha do layout — "single-context" ou "multi-context"]. Veja `.kiro/steering/domain.md`.
 ```
 
-Then write the three docs files using the seed templates in this skill folder as a starting point:
+Apenas `agent-skills-config.md` tem `inclusion: always`, sendo o único arquivo carregado em toda interação. Os três arquivos de detalhe (`issue-tracker.md`, `triage-labels.md`, `domain.md`) são escritos com `inclusion: manual` e são puxados sob demanda, ou pelo agente referenciando explicitamente (`#issue-tracker`, `#triage-labels`, `#domain`) ou pelo usuário invocá-los como comandos slash. O bloco `## Agent skills` acima já é contexto suficiente para sempre carregar; os detalhes ficam fora do contexto até serem solicitados.
 
-- [issue-tracker-github.md](./issue-tracker-github.md) — GitHub issue tracker
-- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md) — GitLab issue tracker
-- [issue-tracker-local.md](./issue-tracker-local.md) — local-markdown issue tracker
-- [triage-labels.md](./triage-labels.md) — label mapping
-- [domain.md](./domain.md) — domain doc consumer rules + layout
+Escolha o template seed correspondente para o issue tracker:
 
-For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
+- [issue-tracker-github.md](./issue-tracker-github.md) — issue tracker do GitHub
+- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md) — issue tracker do GitLab
+- [issue-tracker-local.md](./issue-tracker-local.md) — issue tracker em markdown local
 
-### 5. Done
+Escreva seu conteúdo em `.kiro/steering/issue-tracker.md`. Para issue trackers "outros", escreva `.kiro/steering/issue-tracker.md` do zero usando a descrição do usuário.
 
-Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later — re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
+### 5. Pronto
+
+Diga ao usuário que o setup está completo e quais skills de engenharia agora vão ler desses arquivos. Mencione que ele pode editar `.kiro/steering/issue-tracker.md`, `.kiro/steering/triage-labels.md` ou `.kiro/steering/domain.md` diretamente depois — re-rodar esta skill só é necessário se quiser trocar de issue tracker ou recomeçar do zero.

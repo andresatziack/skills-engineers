@@ -1,8 +1,8 @@
-# Deprecated
+# Depreciado
 
-Skills I no longer use.
+Skills que eu não uso mais.
 
-- **[design-an-interface](./design-an-interface/SKILL.md)** — Generate multiple radically different interface designs for a module using parallel sub-agents.
-- **[qa](./qa/SKILL.md)** — Interactive QA session where user reports bugs conversationally and the agent files GitHub issues.
-- **[request-refactor-plan](./request-refactor-plan/SKILL.md)** — Create a detailed refactor plan with tiny commits via user interview, then file it as a GitHub issue.
-- **[ubiquitous-language](./ubiquitous-language/SKILL.md)** — Extract a DDD-style ubiquitous language glossary from the current conversation.
+- **[design-an-interface](./design-an-interface/SKILL.md)** — Gera múltiplos designs de interface radicalmente diferentes para um módulo usando sub-agentes paralelos.
+- **[qa](./qa/SKILL.md)** — Sessão de QA interativa em que o usuário reporta bugs conversacionalmente e o agente abre issues no GitHub.
+- **[request-refactor-plan](./request-refactor-plan/SKILL.md)** — Cria um plano de refactor detalhado com commits minúsculos via entrevista com o usuário, depois o registra como uma issue no GitHub.
+- **[ubiquitous-language](./ubiquitous-language/SKILL.md)** — Extrai um glossário de linguagem ubíqua estilo DDD a partir da conversa atual.
